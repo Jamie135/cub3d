@@ -12,7 +12,7 @@
 
 #include "../includes/cub3d.h"
 
-int		is_cub(char *str)
+int	is_cub(char *str)
 {
 	int i;
 

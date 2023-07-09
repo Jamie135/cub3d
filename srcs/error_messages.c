@@ -12,7 +12,7 @@
 
 #include "../includes/cub3d.h"
 
-int		message_3(int errornbr)
+int	message_3(int errornbr)
 {
 	if (errornbr == CUB)
 		printf("Error: must be .cub file");
@@ -21,7 +21,7 @@ int		message_3(int errornbr)
 	return (0);
 }
 
-int		message_2(int errornbr)
+int	message_2(int errornbr)
 {
 	if (errornbr == BADSPRITE)
 		printf("Error: can't open sprite textures");
@@ -44,7 +44,7 @@ int		message_2(int errornbr)
 	return (0);
 }
 
-int		message_1(int errornbr)
+int	message_1(int errornbr)
 {
 	if (errornbr == MULTIRES)
 		printf("Error: multiple resolutions");
@@ -71,7 +71,7 @@ int		message_1(int errornbr)
 	return (0);
 }
 
-int		error_message(int n)
+int	error_message(int n)
 {
 	message_1(n);
 	message_2(n);
