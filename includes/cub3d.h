@@ -48,6 +48,18 @@ int		check_data(t_data *data, char *line);
 /* parse_data.c */
 int		parse_id(char **texture, char *line, char *id);
 int		parse_color(char **texture, char *line, char c);
+char	*check_id(char *id, char *line);
+char	*check_color(char c, char *line);
+
+/* texture.c */
+void	check_texture(t_data *data);
+void	check_path(t_data *data);
+void	check_rgb(t_data *data, char *str);
+int		rgb_ceiling(t_data *data, int rgb);
+int		rgb_floor(t_data *data, int rgb);
+
+/* texture_utils.c */
+int		is_xpm(int fd);
 
 /* free.c */
 void	free_message(t_data *data, char *str);

@@ -35,7 +35,7 @@ char	*check_id(char *id, char *line)
 	return (NULL);
 }
 
-//check if the first two characters in line is "F" "C"
+//check if the first two characters in line is "F" or "C"
 //if they are return the path of the color texture, ex: ./path_floor_texture
 char	*check_color(char c, char *line)
 {

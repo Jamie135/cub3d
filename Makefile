@@ -13,7 +13,7 @@
 NAME =	cub3D
 
 SRC =	srcs/cub3d.c srcs/file.c srcs/free.c srcs/map.c srcs/map_utils.c \
-		srcs/parse_data.c
+		srcs/parse_data.c srcs/texture.c srcs/texture_utils.c 
 
 OBJ =	$(SRC:.c=.o)
 

@@ -12,6 +12,8 @@
 
 #include "../includes/cub3d.h"
 
+//realloc the size of data->map by adding +2 lenght
+//and copy the string from data->map[i] to new[i]
 char	**realloc_map(t_data *data, char *line)
 {
 	char	**new;
@@ -88,4 +90,5 @@ void	init_map(t_data *data, char *str)
 	data->ceiling = NULL;
 	check_file(data, str);
 	read_file(data, str);
+	check_texture(data);
 }
