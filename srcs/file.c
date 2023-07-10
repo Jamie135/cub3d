@@ -12,6 +12,8 @@
 
 #include "../includes/cub3d.h"
 
+//parse identity data and color data to the structure t_data until i = 6
+//then parse the map
 int	check_data(t_data *data, char *line)
 {
 	static int	i = 0;
@@ -20,27 +22,28 @@ int	check_data(t_data *data, char *line)
 	flag = i;
 	if (i == 6)
 	{
-		if (parse_map(data, line) == -1)
+		if (check_map(data, line) == -1)
 			return (-1);
 		return (1);
 	}
-	if (!data->n_texture)
-		i += parse_by_id(&data->n_texture, line, "NO");
-	if (!data->s_texture)
-		i += parse_by_id(&data->s_texture, line, "SO");
-	if (!data->w_texture)
-		i += parse_by_id(&data->w_texture, line, "WE");
-	if (!data->e_texture)
-		i += parse_by_id(&data->e_texture, line, "EA");
-	if (!data->f_texture)
-		i += parse_color(&data->f_texture, line, 'F');
-	if (!data->c_texture)
-		i += parse_color(&data->c_texture, line, 'C');
+	if (!data->nord)
+		i += parse_id(&data->nord, line, "NO");
+	if (!data->south)
+		i += parse_id(&data->south, line, "SO");
+	if (!data->west)
+		i += parse_id(&data->west, line, "WE");
+	if (!data->east)
+		i += parse_id(&data->east, line, "EA");
+	if (!data->floor)
+		i += parse_color(&data->floor, line, 'F');
+	if (!data->ceiling)
+		i += parse_color(&data->ceiling, line, 'C');
 	if (flag == i && line[0] != '\0')
 		return (-1);
 	return (0);
 }
 
+//read the content of the file with get_next_line and parse datas from each line with check_data
 void	read_file(t_data *data, char *path)
 {
 	int			fd;
@@ -69,6 +72,7 @@ void	read_file(t_data *data, char *path)
 		free_message(data, "Wrong file format");
 }
 
+//check if it's a .cub file
 void	check_file(t_data *data, char *file)
 {
 	int	i;

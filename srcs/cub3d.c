@@ -14,14 +14,7 @@
 
 int	cub3d(char *name)
 {
-	int		fd;
-	t_parse	parse;
 
-	init_map(&parse);
-	fd = open(name, O_RDONLY);
-	if (fd < 0)
-		return (error_message(FILE));
-	extract_cub(parse, fd);
 }
 
 int	main(int argc, char **argv)

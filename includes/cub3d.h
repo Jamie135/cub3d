@@ -30,11 +30,23 @@
 
 /* map.c */
 void	init_map(t_data *data, char *str);
+int		check_map(t_data *data, char *line);
+int		is_map(char *line);
+void	parse_map(t_data *data, char *line);
+char	**realloc_map(t_data *data, char *line);
+
+/* map_utils.c */
+int		height_map(char **map);
+int		len_map(char **map);
 
 /* file.c */
 void	check_file(t_data *data, char *file);
 void	read_file(t_data *data, char *path);
 int		check_data(t_data *data, char *line);
+
+/* parse_data.c */
+int		parse_id(char **texture, char *line, char *id);
+int		parse_color(char **texture, char *line, char c);
 
 /* free.c */
 void	free_message(t_data *data, char *str);
