@@ -12,6 +12,7 @@
 
 #include "../includes/cub3d.h"
 
+//check if the first two characters in line is "NO" "SO" "WE" or "EA"
 char	*check_id(char *id, char *line)
 {
 	int	i;
@@ -27,12 +28,16 @@ char	*check_id(char *id, char *line)
 			i++;
 		}
 		else if (found == 1 && line[i] != ' ')
+		{
+			printf("line: %s\n", line + i);
 			return (line + i);
+		}
 		i++;
 	}
 	return (NULL);
 }
 
+//check if the first two characters in line is "F" "C"
 char	*check_color(char c, char *line)
 {
 	int	i;

@@ -80,12 +80,12 @@ void	check_file(t_data *data, char *file)
 	i = ft_strlen(file) - 1;
 	if (ft_strlen(file) < 4)
 		free_message(data, ".cub is required");
-	if (str[i--] != 'b')
+	if (file[i--] != 'b')
 		free_message(data, ".cub is required");
-	if (str[i--] != 'u')
+	if (file[i--] != 'u')
 		free_message(data, ".cub is required");
-	if (str[i--] != 'c')
+	if (file[i--] != 'c')
 		free_message(data, ".cub is required");
-	if (str[i] != '.')
+	if (file[i] != '.')
 		free_message(data, ".cub is required");
 }

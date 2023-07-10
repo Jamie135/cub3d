@@ -12,113 +12,96 @@
 
 #include "../includes/get_next_line.h"
 
-size_t	ft_strlen_gnl(char *s)
+char	*gnl_strjoin(const char *s1, const char *s2)
 {
-	size_t	len;
+	char	*str;
+	int		i;
+	int		j;
 
-	if (!s)
-		return (0);
-	len = 0;
-	while (s[len])
-		len++;
-	return (len);
-}
-
-char	*ft_strchr_gnl(char *s, int nl)
-{
-	size_t	len;
-	size_t	i;
-
-	if (!s)
-		return (NULL);
-	len = ft_strlen_gnl(s);
 	i = 0;
-	while (i < len)
+	j = 0;
+	if (!s1 || !s2)
+		return (NULL);
+	str = (char *)malloc(sizeof(char) * (gnl_strlen(s1) + gnl_strlen(s2) + 1));
+	if (!(str))
+		return (NULL);
+	while (s1[i])
 	{
-		if (s[i] == (unsigned char)nl)
-			return ((char *)s + i + 1);
+		str[i] = s1[i];
 		i++;
 	}
+	while (s2[j])
+	{
+		str[i] = s2[j];
+		i++;
+		j++;
+	}
+	str[i] = '\0';
+	return (str);
+}
+
+char	*gnl_strndup(char *s)
+{
+	char	*str;
+	int		i;
+
+	i = 0;
+	str = malloc(sizeof(char) * gnl_strlen(s) + 1);
+	if (!(str))
+		return (NULL);
+	while (s[i] && s[i] != '\n')
+	{
+		str[i] = s[i];
+		i++;
+	}
+	str[i] = '\0';
+	return (str);
+}
+
+char	*gnl_strnchr(char *s, int c, int n)
+{
+	int	i;
+
+	i = 0;
+	while (s[i] != '\0' && i < n)
+	{
+		if (s[i] == c)
+			return (&s[i]);
+		i++;
+	}
+	if (s[i] == c)
+		return (&s[i]);
 	return (NULL);
 }
 
-char	*ft_strjoin_gnl(char *tmp, char *buffer)
+char	*gnl_substr(char const *s, unsigned int start, size_t len)
 {
-	char	*new_tmp;
-	size_t	len_tmp;
+	char	*str;
 	size_t	i;
 
-	len_tmp = ft_strlen_gnl(tmp);
-	new_tmp = (char *)malloc(sizeof(char) * (len_tmp + BUFFER_SIZE + 1));
-	if (!new_tmp)
-		return (NULL);
-	new_tmp[0] = 0;
-	i = 0;
-	while (i < len_tmp)
-	{
-		new_tmp[i] = tmp[i];
-		i++;
-	}
-	while (i < (len_tmp + BUFFER_SIZE))
-	{
-		new_tmp[i] = buffer[i - len_tmp];
-		i++;
-	}
-	new_tmp[i] = 0;
-	free(tmp);
-	return (new_tmp);
-}
-
-char	*ft_split_gnl(char *tmp)
-{
-	size_t	len_line;
-	size_t	end_line;
-	size_t	i;
-	char	*line;
-
-	line = NULL;
-	len_line = 0;
-	end_line = 0;
-	while (tmp[len_line] && tmp[len_line] != '\n')
-		len_line++;
-	if (tmp[len_line] == '\n')
-		end_line++;
-	line = (char *)malloc(sizeof(char) * (len_line + end_line + 1));
-	if (!line)
+	str = malloc(sizeof(char) * (len + 1));
+	if (!(str) || !s)
 		return (NULL);
 	i = 0;
-	while (tmp[i] && tmp[i] != '\n')
+	if (start < gnl_strlen(s))
 	{
-		line[i] = tmp[i];
-		i++;
+		while (s[start] && i < len)
+		{
+			str[i] = s[start];
+			i++;
+			start++;
+		}
 	}
-	if (end_line)
-		line[i] = '\n';
-	line[i + end_line] = 0;
-	return (line);
+	str[i] = '\0';
+	return (str);
 }
 
-char	*ft_substr_gnl(char *tmp, size_t start, size_t len)
+size_t	gnl_strlen(const char *str)
 {
-	char	*new_tmp;
 	size_t	i;
-	size_t	len_check;
 
-	len_check = ft_strlen_gnl(tmp);
-	if ((len + start) > len_check)
-		len = len_check - start;
-	if (start > len_check)
-		len = 0;
-	new_tmp = (char *)malloc(sizeof(char) * (len + 1));
-	if (!new_tmp)
-		return (0);
 	i = 0;
-	while (i < len)
-	{
-		new_tmp[i] = tmp[start + i];
+	while (str[i])
 		i++;
-	}
-	new_tmp[i] = 0;
-	free(tmp);
-	return (new_tmp);
+	return (i);
 }

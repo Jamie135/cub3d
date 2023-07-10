@@ -12,11 +12,6 @@
 
 #include "../includes/cub3d.h"
 
-int	cub3d(char *name)
-{
-
-}
-
 int	main(int argc, char **argv)
 {
 	t_data	data;

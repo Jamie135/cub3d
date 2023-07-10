@@ -24,8 +24,9 @@
 # include <math.h>
 # include <X11/X.h>
 # include <X11/keysym.h>
-# include <mlx.h>
-# include "../libft/libft.h"
+// # include <mlx.h>
+# include "libft.h"
+# include "get_next_line.h"
 # include "struct.h"
 
 /* map.c */

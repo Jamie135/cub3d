@@ -12,103 +12,81 @@
 
 #include "../includes/get_next_line.h"
 
-static char	*error(char *tmp, char *buffer)
+static int	cut(char **stock)
 {
-	if (buffer)
-	{
-		free(buffer);
-		buffer = NULL;
-	}
-	if (tmp)
-	{
-		free(tmp);
-		tmp = NULL;
-	}
-	return (NULL);
-}
+	int		i;
+	char	*tmp;
 
-static char	*get_next_line_read(int fd, char *tmp)
-{
-	char	*buffer;
-	ssize_t	rd;
-
-	rd = 1;
-	buffer = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	if (!buffer)
-		return (NULL);
-	while (rd && !ft_strchr_gnl(tmp, '\n'))
-	{
-		rd = read(fd, buffer, BUFFER_SIZE);
-		if (rd == -1)
-			return (error(tmp, buffer));
-		buffer[rd] = 0;
-		tmp = ft_strjoin_gnl(tmp, buffer);
-		if (tmp[0] == 0)
-		{
-			free(buffer);
-			free(tmp);
-			return (NULL);
-		}
-	}
-	free(buffer);
-	return (tmp);
-}
-
-static char	*get_next_line_new_tmp(char *tmp, char *line)
-{
-	size_t	len_tmp;
-	size_t	len_line;
-
-	len_tmp = ft_strlen_gnl(ft_strchr_gnl(tmp, '\n'));
-	len_line = ft_strlen_gnl(line);
-	tmp = ft_substr_gnl(tmp, len_line, len_tmp);
-	if (!tmp)
-		return (error(tmp, NULL));
-	return (tmp);
-}
-
-static void	get_next_line_new_buffer(char *buffer, char *tmp)
-{
-	size_t	len_tmp;
-	size_t	i;
-
-	len_tmp = ft_strlen_gnl(tmp);
 	i = 0;
-	while (i < len_tmp)
+	tmp = *stock;
+	while (tmp[i])
 	{
-		buffer[i] = tmp[i];
+		if (tmp[i] == '\n')
+		{
+			i++;
+			break ;
+		}
 		i++;
 	}
+	*stock = gnl_substr(tmp, i, gnl_strlen(tmp));
+	if (!(*stock))
+		return (-1);
 	free(tmp);
-	while (i < BUFFER_SIZE)
-	{
-		buffer[i] = 0;
-		i++;
-	}
+	return (0);
 }
 
-char	*get_next_line(int fd)
+static int	readbuff(int fd, char *buff, char **stock)
 {
-	static char	buffer[BUFFER_SIZE + 1];
-	char		*line;
-	char		*tmp;
+	char	*tmp;
+	int		rd;
 
-	if (fd <= 0 && BUFFER_SIZE <= 0)
-		return (NULL);
-	line = NULL;
-	tmp = NULL;
-	tmp = ft_strjoin_gnl(tmp, buffer);
-	if (!tmp)
-		return (error(tmp, NULL));
-	tmp = get_next_line_read(fd, tmp);
-	if (!tmp)
-		return (error(tmp, NULL));
-	line = ft_split_gnl(tmp);
-	if (!line)
-		return (error(tmp, NULL));
-	tmp = get_next_line_new_tmp(tmp, line);
-	if (!tmp)
-		return (error(tmp, NULL));
-	get_next_line_new_buffer(buffer, tmp);
-	return (line);
+	rd = read(fd, buff, BUFFER_SIZE);
+	while ((rd))
+	{
+		buff[rd] = '\0';
+		tmp = *stock;
+		*stock = gnl_strjoin(tmp, buff);
+		if (!(*stock))
+			return (-1);
+		free(tmp);
+		if (gnl_strnchr(buff, '\n', BUFFER_SIZE))
+			break ;
+		rd = read(fd, buff, BUFFER_SIZE);
+	}
+	return (rd);
+}
+
+void	for_norme(char *stock)
+{
+	free(stock);
+	stock = NULL;
+}
+
+int	get_next_line(int fd, char **line)
+{
+	char			buff[BUFFER_SIZE + 1];
+	static char		*stock;
+	int				rd;
+
+	if (read(fd, NULL, 0) < 0 || !line || BUFFER_SIZE <= 0)
+		return (-1);
+	if (!stock)
+	{
+		stock = malloc(sizeof(char));
+		if (!(stock))
+			return (-1);
+		stock[0] = '\0';
+	}
+	rd = readbuff(fd, buff, &stock);
+	if ((rd) == -1)
+		return (-1);
+	*line = gnl_strndup(stock);
+	if (!gnl_strnchr(stock, '\n', gnl_strlen(stock)))
+	{
+		for_norme(stock);
+		return (0);
+	}
+	if (cut(&stock) == -1)
+		return (-1);
+	return (1);
 }
