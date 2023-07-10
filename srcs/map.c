@@ -30,6 +30,7 @@ char	**realloc_map(t_data *data, char *line)
 	return (new);
 }
 
+//parse each map line to char **map variable in struct t_data
 void	parse_map(t_data *data, char *line)
 {
 	if (!data->map)
@@ -48,20 +49,22 @@ void	parse_map(t_data *data, char *line)
 	data->len = len_map(data->map);
 }
 
+//this function return 0 until line[0] != '\0' (until we find the first map line)
+//the condition if(map_line) is to check if we have '\0' between our map lines
 int	is_map(char *line)
 {
-	static int	map_exist = 0;
-	static int	map_end = 0;
+	static int	map_line = 0;
+	static int	empty_line = 0;
 
 	if (line[0] != '\0')
 	{
-		if (map_end)
+		if (empty_line)
 			return (-1);
-		map_exist = 1;
+		map_line = 1;
 		return (1);
 	}
-	if (map_exist)
-		map_end = 1;
+	if (map_line)
+		empty_line = 1;
 	return (0);
 }
 
