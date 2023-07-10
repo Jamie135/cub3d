@@ -14,22 +14,24 @@
 
 int	cub3d(char *name)
 {
-	int	fd;
+	int		fd;
+	t_parse	parse;
+
+	init_map(&parse);
 	fd = open(name, O_RDONLY);
 	if (fd < 0)
 		return (error_message(FILE));
+	extract_cub(parse, fd);
 }
 
 int	main(int argc, char **argv)
 {
-	if (argc < 2)
-		printf("Error: .cub file is missing");
-	else if (argc == 2)
+	t_data	data;
+
+	if (argc != 2)
 	{
-		if (is_cub(argv[1]))
-			return (error_message(CUB));
-		cub3d(argv[1]);
+		ft_putendl_fd("Error: wrong number of arguments", 2);
+		return (-1);
 	}
-	else
-		printf("Error: too many arguments");
+	init_map(&data, argv[1]);
 }
