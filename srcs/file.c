@@ -12,8 +12,8 @@
 
 #include "../includes/cub3d.h"
 
-//parse identity data and color data to the structure t_data until i = 6
-//then parse the map
+//parse identity data and color data to struct t_data until i = 6
+//from i = 6, we start to parse each line of the map
 int	check_data(t_data *data, char *line)
 {
 	static int	i = 0;

@@ -12,7 +12,8 @@
 
 #include "../includes/cub3d.h"
 
-//check if the first two characters in line is "NO" "SO" "WE" or "EA"
+//check if the first two characters in line are "NO" "SO" "WE" or "EA"
+//if they are return the path of the id texture, ex: ./path_north_texture
 char	*check_id(char *id, char *line)
 {
 	int	i;
@@ -28,16 +29,14 @@ char	*check_id(char *id, char *line)
 			i++;
 		}
 		else if (found == 1 && line[i] != ' ')
-		{
-			printf("line: %s\n", line + i);
 			return (line + i);
-		}
 		i++;
 	}
 	return (NULL);
 }
 
 //check if the first two characters in line is "F" "C"
+//if they are return the path of the color texture, ex: ./path_floor_texture
 char	*check_color(char c, char *line)
 {
 	int	i;
@@ -56,6 +55,7 @@ char	*check_color(char c, char *line)
 	return (NULL);
 }
 
+//parse the path of the id to texture[0], which is floor or ceiling in struct t_data
 int	parse_color(char **texture, char *line, char c)
 {
 	char		*ptr;
@@ -84,6 +84,7 @@ int	parse_color(char **texture, char *line, char c)
 	return (1);
 }
 
+//parse the path of the id to texture[0], which is nord, south, west or east in struct t_data
 int	parse_id(char **texture, char *line, char *id)
 {
 	char		*ptr;
