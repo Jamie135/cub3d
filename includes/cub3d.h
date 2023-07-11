@@ -34,6 +34,9 @@
 
 /* map.c */
 void	init_map(t_data *data, char *str);
+void	create_map(t_data *data);
+
+/* map_valid.c */
 int		check_map(t_data *data, char *line);
 int		is_map(char *line);
 void	parse_map(t_data *data, char *line);
@@ -71,6 +74,12 @@ void	check_edge(t_data *data);
 char	**flood_alloc(t_data *data);
 void	flood_assign(t_data *data, char **new, char c);
 void	insert_map(t_data *data, char **new, char tmp);
+int		check_zero(char **map);
+
+/* player.c */
+int		locate_player(char **map);
+int		place_player(char **map, int x, int y, char player);
+int		is_player(char player);
 
 /* free.c */
 void	free_message(t_data *data, char *str);

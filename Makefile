@@ -12,8 +12,9 @@
 
 NAME =	cub3D
 
-SRC =	srcs/cub3d.c srcs/file.c srcs/free.c srcs/map.c srcs/map_utils.c \
-		srcs/parse_data.c srcs/texture.c srcs/texture_utils.c srcs/edge.c \
+SRC =	srcs/cub3d.c srcs/file.c srcs/free.c srcs/map.c srcs/map_valid.c \
+		srcs/map_utils.c srcs/texture.c srcs/texture_utils.c srcs/edge.c\
+		srcs/parse_data.c srcs/player.c
 
 OBJ =	$(SRC:.c=.o)
 

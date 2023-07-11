@@ -12,6 +12,27 @@
 
 #include "../includes/cub3d.h"
 
+int	check_zero(char **map)
+{
+	int	i;
+	int	j;
+
+	i = 1;
+	while (map[i] && map[i + 1])
+	{
+		j = 1;
+		while (map[i][j] && map[i][j + 1])
+		{
+			if (map[i][j] == '0'
+				&& (map[i - 1][j] == ' ' || map[i + 1][j] == ' '
+				|| map[i][j - 1] == ' ' || map[i][j + 1] == ' '))
+				return (1);
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
 
 void	insert_map(t_data *data, char **new, char tmp)
 {
@@ -86,4 +107,9 @@ void	check_edge(t_data *data)
 		free_message(data, "new/tmp_map alloc failed");
 	flood_assign(data, new, ' ');
 	insert_map(data, new, ' ');
+	locate_player(new);
+	free_map(data);
+	data->map = new;
+	if (check_zero(data->map) || locate_player(data->map))
+		free_message(data, "Map is not closed");
 }
