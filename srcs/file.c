@@ -39,7 +39,9 @@ int	check_data(t_data *data, char *line)
 	if (!data->ceiling)
 		i += parse_color(&data->ceiling, line, 'C');
 	if (flag == i && line[0] != '\0')
+	{
 		return (-1);
+	}
 	return (0);
 }
 

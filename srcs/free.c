@@ -12,6 +12,17 @@
 
 #include "../includes/cub3d.h"
 
+void	free_tabs(char **tab)
+{
+	int	i;
+
+	i = 0;
+	while (tab && tab[i])
+		free(tab[i++]);
+	if (tab)
+		free(tab);
+}
+
 void	free_map(t_data *data)
 {
 	int	i;

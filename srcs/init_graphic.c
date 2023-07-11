@@ -12,6 +12,47 @@
 
 #include "../includes/cub3d.h"
 
+int	color_value(char *str)
+{
+	char	**value;
+	int		r;
+	int		g;
+	int		b;
+
+	value = ft_split(value, ',');
+	r = ft_atoi(value[0]);
+	g = ft_atoi(value[1]);
+	b = ft_atoi(value[2]);
+	free_tabs(value);
+	return (r << 16 | g << 8 | b);
+	return (0);
+}
+
+int	init_texture_valid(t_img *text, void *mlx, char *path)
+{
+	text->img = mlx_xpm_file_to_image(mlx, path,
+			&text->width, &text->height);
+	if (!text->img)
+		return (1);
+	text->addr = mlx_get_data_addr(text->img, &text->bpp,
+			&text->length, &text->endian);
+	return (0);
+}
+
+void	init_texture(t_data *data, void *mlx, t_texture *text)
+{
+	if (init_texture_valid(&text->nordw, mlx, data->nord))
+		exit_file(data, "NO text failed");
+	if (init_texture_valid(&text->southw, mlx, data->south))
+		exit_file(data, "SO text failed");
+	if (init_texture_valid(&text->westw, mlx, data->west))
+		exit_file(data, "WE text failed");
+	if (init_texture_valid(&text->eastw, mlx, data->east))
+		exit_file(data, "EA text failed");
+	text->cieling = color_value(data->ceiling);
+	text->floor = color_value(data->floor);
+}
+
 void	init_graphic(t_data *data)
 {
 	data->img.img = NULL;
@@ -22,4 +63,6 @@ void	init_graphic(t_data *data)
 	data->mlx = mlx_init();
 	if (!data->mlx)
 		exit_file(data, "Mlx init failed");
+	init_texture(data, data->mlx, &data->texture);
+	init_player(data);
 }

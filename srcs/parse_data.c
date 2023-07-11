@@ -106,8 +106,11 @@ int	parse_id(char **texture, char *line, char *id)
 	texture[0][i] = '\0';
 	while (ptr[i])
 	{
-		if (ptr[i] != ' ')
+		printf("%c\n", ptr[i]);
+		if (ptr[i] != ' ') {
+
 			return (0);
+		}
 		i++;
 	}
 	return (1);

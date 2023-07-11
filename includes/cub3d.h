@@ -86,6 +86,9 @@ int		is_player(char player);
 
 /* init_graphic.c */
 void	init_graphic(t_data *data);
+void	init_texture(t_data *data, void *mlx, t_texture *text);
+int		init_texture_valid(t_img *text, void *mlx, char *path);
+int		color_value(char *str);
 
 /* exit.c */
 void	exit_file(t_data *data, char *str);
@@ -96,5 +99,6 @@ void	exit_game(t_data *data);
 void	free_message(t_data *data, char *str);
 void	free_texture(t_data *data);
 void	free_map(t_data *data);
+void	free_tabs(char **tab);
 
 #endif
