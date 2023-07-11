@@ -91,4 +91,6 @@ void	init_map(t_data *data, char *str)
 	check_file(data, str);
 	read_file(data, str);
 	check_texture(data);
+	check_element(data);
+	check_edge(data);
 }

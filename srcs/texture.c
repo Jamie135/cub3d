@@ -56,34 +56,37 @@ int	rgb_ceiling(t_data *data, int rgb)
 	return (color[rgb]);
 }
 
+//check if the floor and ceiling all have red, green and blue value
+//and check if all three values are between 1 and 3 digits
 void	check_rgb(t_data *data, char *str)
 {
 	int	i;
-	int	cpt;
-	int	cpt_color;
+	int	digit;
+	int	rgb;
 
 	i = 0;
-	cpt = 0;
-	cpt_color = 0;
+	digit = 0;
+	rgb = 0;
 	while (str[i])
 	{
 		if (str[i] >= '0' && str[i] <= '9')
-			cpt++;
+			digit++;
 		else if (str[i] == ',')
 		{
-			if (cpt < 1 || cpt > 3)
+			if (digit < 1 || digit > 3)
 				free_message(data, "Color error");
-			cpt = 0;
-			cpt_color++;
+			digit = 0;
+			rgb++;
 		}
 		else
 			free_message(data, "Color wrong args");
 		i++;
 	}
-	if (cpt < 1 || cpt > 3 || cpt_color != 2)
+	if (digit < 1 || digit > 3 || rgb != 2)
 		free_message(data, "Color error");
 }
 
+//check if the path for the id is accessible
 void	check_path(t_data *data)
 {
 	int	fd;

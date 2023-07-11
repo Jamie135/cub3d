@@ -39,6 +39,8 @@ char	**realloc_map(t_data *data, char *line);
 /* map_utils.c */
 int		height_map(char **map);
 int		len_map(char **map);
+void	check_element(t_data *data);
+int		is_forbidden(char c);
 
 /* file.c */
 void	check_file(t_data *data, char *file);
@@ -60,6 +62,9 @@ int		rgb_floor(t_data *data, int rgb);
 
 /* texture_utils.c */
 int		is_xpm(int fd);
+
+/* edge.c */
+void	check_edge(t_data *data);
 
 /* free.c */
 void	free_message(t_data *data, char *str);
