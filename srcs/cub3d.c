@@ -18,7 +18,8 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 	{
-		ft_putendl_fd("Error: wrong number of arguments", 2);
+		ft_putendl_fd("Error", 2);
+		ft_putendl_fd("Wrong number of arguments", 2);
 		return (-1);
 	}
 	init_map(&data, argv[1]);

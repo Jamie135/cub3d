@@ -22,7 +22,7 @@ char	**realloc_map(t_data *data, char *line)
 	i = -1;
 	new = malloc(sizeof(char *) * (height_map(data->map) + 2));
 	if (!new)
-		free_message(data, "map realoc failed");
+		free_message(data, "map realloc failed");
 	while (data->map[++i])
 		new[i] = ft_strdup(data->map[i]);
 	if (line)

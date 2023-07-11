@@ -29,6 +29,9 @@
 # include "get_next_line.h"
 # include "struct.h"
 
+# define HEIGHT 1000
+# define WIDTH 1000
+
 /* map.c */
 void	init_map(t_data *data, char *str);
 int		check_map(t_data *data, char *line);
@@ -65,6 +68,9 @@ int		is_xpm(int fd);
 
 /* edge.c */
 void	check_edge(t_data *data);
+char	**flood_alloc(t_data *data);
+void	flood_assign(t_data *data, char **new, char c);
+void	insert_map(t_data *data, char **new, char tmp);
 
 /* free.c */
 void	free_message(t_data *data, char *str);
