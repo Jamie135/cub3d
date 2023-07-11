@@ -87,6 +87,11 @@ int		is_player(char player);
 /* init_graphic.c */
 void	init_graphic(t_data *data);
 
+/* exit.c */
+void	exit_file(t_data *data, char *str);
+void	exit_window(t_data *data);
+void	exit_game(t_data *data);
+
 /* free.c */
 void	free_message(t_data *data, char *str);
 void	free_texture(t_data *data);

@@ -14,5 +14,12 @@
 
 void	init_graphic(t_data *data)
 {
-
+	data->img.img = NULL;
+	data->texture.nordw.img = NULL;
+	data->texture.southw.img = NULL;
+	data->texture.westw.img = NULL;
+	data->texture.eastw.img = NULL;
+	data->mlx = mlx_init();
+	if (!data->mlx)
+		exit_file(data, "Mlx init failed");
 }

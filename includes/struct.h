@@ -13,6 +13,37 @@
 #ifndef STRUCT_H
 # define STRUCT_H
 
+typedef struct s_img
+{
+	int		len_line;
+	int		height;
+	int		width;
+	int		bpp;
+	int		endian;
+	int		*color;
+	void	*img;
+}				t_img;
+
+typedef struct s_texture
+{
+	t_img	nordw;
+	t_img	southw;
+	t_img	westw;
+	t_img	eastw;
+	int		cieling;
+	int		floor;
+}				t_texture;
+
+typedef struct s_frame
+{
+	int				bpp;
+	int				len;
+	int				endian;
+	int				move;
+	void			*window;
+	void			*img;
+}		t_frame;
+
 typedef struct s_data
 {
 	int			len;
@@ -25,6 +56,8 @@ typedef struct s_data
 	char		*east;
 	char		*floor;
 	char		*ceiling;
+	t_frame		img;
+	t_texture	texture;
 }				t_data;
 
 #endif
