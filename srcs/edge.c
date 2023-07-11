@@ -34,7 +34,7 @@ int	check_zero(char **map)
 	return (0);
 }
 
-void	insert_map(t_data *data, char **new, char tmp)
+void	flood_insert(t_data *data, char **new, char tmp)
 {
 	int	i;
 	int	j;
@@ -106,7 +106,7 @@ void	check_edge(t_data *data)
 	if (!new)
 		free_message(data, "new/tmp_map alloc failed");
 	flood_assign(data, new, ' ');
-	insert_map(data, new, ' ');
+	flood_insert(data, new, ' ');
 	locate_player(new);
 	free_map(data);
 	data->map = new;

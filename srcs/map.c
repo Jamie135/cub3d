@@ -12,11 +12,79 @@
 
 #include "../includes/cub3d.h"
 
+void	insert_map(t_data *data, char **new)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (new[i])
+	{
+		j = 0;
+		while (new[i][j])
+		{
+			if (data->map[i + 1][j + 1] == ' ')
+				new[i][j] = '0';
+			else
+				new[i][j] = data->map[i + 1][j + 1];
+			j++;
+		}
+		i++;
+	}
+}
+
+void	assign_map(t_data *data, char **new, char player)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < HEIGHT)
+	{
+		j = 0;
+		while (j < data->len)
+		{
+			new[i][j] = player;
+			j++;
+		}
+		new[i][j] = '\0';
+		i++;
+	}
+	new[i] = NULL;
+}
+
+char	**alloc_map(t_data *data)
+{
+	int		i;
+	char	**new;
+
+	i = 0;
+	new = malloc(sizeof(char *) * (HEIGHT + 1));
+	if (!new)
+		return (NULL);
+	new[HEIGHT] = NULL;
+	while (i < HEIGHT)
+	{
+		new[i] = malloc(sizeof(char) * (data->len + 1));
+		if (!new[i])
+			return (NULL);
+		new[i][data->len] = '\0';
+		i++;
+	}
+	return (new);
+}
+
 void	create_map(t_data *data)
 {
 	char	**new;
 
-
+	new = alloc_map(data);
+	if (!new)
+		free_message(data, "map alloc failed");
+	assign_map(data, new, '0');
+	insert_map(data, new);
+	free_map(data);
+	data->map = new;
 }
 
 void	init_map(t_data *data, char *str)
