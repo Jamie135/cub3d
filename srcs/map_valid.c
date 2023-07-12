@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 18:44:29 by pbureera          #+#    #+#             */
-/*   Updated: 2023/07/11 18:44:29 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/07/12 15:19:17 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ char	**realloc_map(t_data *data, char *line)
 	return (new);
 }
 
-//parse each map line to char **map variable in struct t_data
+//parse each map line to **map variable in struct t_data
+//i.e. copy the map from .cub file to **map
 void	parse_map(t_data *data, char *line)
 {
 	if (!data->map)
@@ -51,7 +52,8 @@ void	parse_map(t_data *data, char *line)
 	data->len = len_map(data->map);
 }
 
-//this function return 0 until line[0] != '\0' (until we find the first map line)
+//this function return 0 until line[0] != '\0' 
+//i.e. until we find the first map line after parsing the identifiers and rgb
 //the condition if(map_line) is to check if we have '\0' between our map lines
 int	is_map(char *line)
 {
@@ -78,3 +80,10 @@ int	check_map(t_data *data, char *line)
 		parse_map(data, line);
 	return (1);
 }
+
+// int i = 0;
+// 	while (data->map[i])
+// 	{
+// 		printf("map[%i]: %s\n", i, data->map[i]);
+// 		i++;
+// 	}

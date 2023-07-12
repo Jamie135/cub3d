@@ -6,14 +6,14 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 23:13:54 by pbureera          #+#    #+#             */
-/*   Updated: 2023/07/10 23:13:54 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/07/12 15:08:15 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
 //check if the first two characters in line are "NO" "SO" "WE" or "EA"
-//if they are return the path of the id texture, ex: ./path_north_texture
+//if they are return the path of the id texture, ex: ./xpm/grass.xpm
 char	*check_id(char *id, char *line)
 {
 	int	i;
@@ -36,7 +36,7 @@ char	*check_id(char *id, char *line)
 }
 
 //check if the first two characters in line is "F" or "C"
-//if they are return the path of the color texture, ex: ./path_floor_texture
+//if they are return the rgb value of the foor/ceiling, ex: 250,250,250
 char	*check_color(char c, char *line)
 {
 	int	i;
@@ -55,7 +55,7 @@ char	*check_color(char c, char *line)
 	return (NULL);
 }
 
-//parse the path of the id to texture[0], which is floor or ceiling in struct t_data
+//parse the rgb value to texture[0], which is floor or ceiling in struct t_data
 int	parse_color(char **texture, char *line, char c)
 {
 	char		*ptr;
@@ -84,7 +84,8 @@ int	parse_color(char **texture, char *line, char c)
 	return (1);
 }
 
-//parse the path of the id to texture[0], which is nord, south, west or east in struct t_data
+//parse the path of the identifiers to texture[0], 
+//which is nord, south, west or east in struct t_data
 int	parse_id(char **texture, char *line, char *id)
 {
 	char		*ptr;
@@ -106,11 +107,8 @@ int	parse_id(char **texture, char *line, char *id)
 	texture[0][i] = '\0';
 	while (ptr[i])
 	{
-		printf("%c\n", ptr[i]);
-		if (ptr[i] != ' ') {
-
+		if (ptr[i] != ' ')
 			return (0);
-		}
 		i++;
 	}
 	return (1);
