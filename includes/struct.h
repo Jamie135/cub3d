@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 20:48:51 by pbureera          #+#    #+#             */
-/*   Updated: 2023/07/10 20:48:51 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/07/12 12:49:17 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ typedef struct s_img
 	int		bpp;
 	int		endian;
 	int		*color;
+	char	*addr;
 	void	*img;
 }				t_img;
 
@@ -41,6 +42,7 @@ typedef struct s_frame
 	int				endian;
 	int				move;
 	void			*window;
+	char			*addr;
 	void			*img;
 }		t_frame;
 

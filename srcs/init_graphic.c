@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_graphic.c                                             :+:      :+:    :+:   */
+/*   init_graphic.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/11 19:49:15 by pbureera          #+#    #+#             */
-/*   Updated: 2023/07/11 19:49:15 by pbureera         ###   ########.fr       */
+/*   Created: 2023/07/12 12:39:34 by pbureera          #+#    #+#             */
+/*   Updated: 2023/07/12 13:01:11 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	color_value(char *str)
 	int		g;
 	int		b;
 
-	value = ft_split(value, ',');
+	value = ft_split(str, ',');
 	r = ft_atoi(value[0]);
 	g = ft_atoi(value[1]);
 	b = ft_atoi(value[2]);
@@ -35,7 +35,7 @@ int	init_texture_valid(t_img *text, void *mlx, char *path)
 	if (!text->img)
 		return (1);
 	text->addr = mlx_get_data_addr(text->img, &text->bpp,
-			&text->length, &text->endian);
+			&text->len_line, &text->endian);
 	return (0);
 }
 
@@ -64,5 +64,4 @@ void	init_graphic(t_data *data)
 	if (!data->mlx)
 		exit_file(data, "Mlx init failed");
 	init_texture(data, data->mlx, &data->texture);
-	init_player(data);
 }
