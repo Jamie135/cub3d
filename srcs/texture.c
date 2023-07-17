@@ -12,6 +12,10 @@
 
 #include "../includes/cub3d.h"
 
+//go through data->floor which contains RGB values
+//then the values are stored in the stativ int color array. 
+//then function checks if any of the color components exceeds 255
+//and if rbg is between 0 and 2
 int	rgb_floor(t_data *data, int rgb)
 {
 	static int	color[3];
@@ -35,6 +39,9 @@ int	rgb_floor(t_data *data, int rgb)
 	return (color[rgb]);
 }
 
+//go through data->ceiling which contains RGB values
+//then the values are stored in the stativ int color array. 
+//then function checks if any of the color components exceeds 255
 int	rgb_ceiling(t_data *data, int rgb)
 {
 	static int	color[3];
@@ -109,6 +116,7 @@ void	check_path(t_data *data)
 	close(fd);
 }
 
+//check validity for colors and identifier's path 
 void	check_texture(t_data *data)
 {
 	check_path(data);

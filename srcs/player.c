@@ -12,6 +12,7 @@
 
 #include "../includes/cub3d.h"
 
+//check if char player corresponds to a player
 int	is_player(char player)
 {
 	if (player == 'N' || player == 'S'
@@ -20,6 +21,8 @@ int	is_player(char player)
 	return (0);
 }
 
+//checks if the coordination on the map is empty (denoted by a space character)
+//if it is, it places the player character, otherwise it does not modify the map
 int	place_player(char **map, int x, int y, char player)
 {
 	if (map[y][x] == ' ')
@@ -28,6 +31,7 @@ int	place_player(char **map, int x, int y, char player)
 	return (0);
 }
 
+//locate the position of the player in the map
 int	locate_player(char **map)
 {
 	static int	y = 0;

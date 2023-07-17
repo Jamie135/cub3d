@@ -12,7 +12,7 @@
 
 #include "../includes/cub3d.h"
 
-int	check_zero(char **map)
+//iterate over the map arrayand checks if '0' is surrounded by at least one ' '
 {
 	int	i;
 	int	j;
@@ -34,6 +34,11 @@ int	check_zero(char **map)
 	return (0);
 }
 
+//this function copies the elements from data->map to new map
+//except when the elements is ' ', new[i + 1][j + 1] = tmp
+//new map is offset by 1 in both dimensions compared to data->map
+//with the intention of inserting tmp into the empty spaces denoted by ' ' 
+//in data->map.
 void	flood_insert(t_data *data, char **new, char tmp)
 {
 	int	i;
@@ -55,7 +60,7 @@ void	flood_insert(t_data *data, char **new, char tmp)
 	}
 }
 
-//flood the character c in our new map
+//initializing every element in new map with character c
 void	flood_assign(t_data *data, char **new, char c)
 {
 	int	i;
@@ -76,7 +81,8 @@ void	flood_assign(t_data *data, char **new, char c)
 	new[i] = NULL;
 }
 
-//alloc a new map with the height of 1003 and the width of data->len + 3
+//allocates new map (2D array of characters) 
+//the dimensions are determined by HEIGHT + 2 rows and data->len + 2 columns
 char	**flood_alloc(t_data *data)
 {
 	int		i;
@@ -98,6 +104,8 @@ char	**flood_alloc(t_data *data)
 	return (new);
 }
 
+//check the player placement, empty spaces and character validity by
+//allocating a new map 
 void	check_edge(t_data *data)
 {
 	char	**new;

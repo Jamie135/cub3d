@@ -12,6 +12,9 @@
 
 #include "../includes/cub3d.h"
 
+//this function takes a string of rgb color (e.g. 200,200,50)
+//to split the value to int r, int g and int b
+//then it returns an int representing color in rgb format
 int	color_value(char *str)
 {
 	char	**value;
@@ -25,7 +28,6 @@ int	color_value(char *str)
 	b = ft_atoi(value[2]);
 	free_tabs(value);
 	return (r << 16 | g << 8 | b);
-	return (0);
 }
 
 int	init_texture_valid(t_img *text, void *mlx, char *path)

@@ -12,6 +12,9 @@
 
 #include "../includes/cub3d.h"
 
+//takes a file descriptor fd as input and checks if it is in the xpm format
+//the function compares each character read c with s (the XPM header string)
+//until i = 9 (when all characters of the XPM header string matched)
 int	is_xpm(int fd)
 {
 	int		i;

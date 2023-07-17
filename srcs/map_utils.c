@@ -12,6 +12,7 @@
 
 #include "../includes/cub3d.h"
 
+//return -1 if str[i] is a forbidden character
 int	is_forbidden(char c)
 {
 	int			i;
@@ -60,6 +61,7 @@ void	check_element(t_data *data)
 		free_message(data, "Wrong number of player in map");
 }
 
+//return the lenght of the map
 int	len_map(char **map)
 {
 	int	i;
@@ -76,6 +78,7 @@ int	len_map(char **map)
 	return (len);
 }
 
+//return the height of the map
 int	height_map(char **map)
 {
 	int	i;
