@@ -21,7 +21,8 @@ OBJ =	$(SRC:.c=.o)
 
 CC =	clang 
 FLAGS =	-Wall -Wextra -Werror -g
-LIBMLX  =  -Llibft/ -lft -L./minilibx-linux -lmlx_Linux -lmlx -lXext -lX11 -lm -lz
+LIBMLX  =  -Llibft/ -lft \
+-L./minilibx-linux -lmlx_Linux -lmlx -lXext -lX11 -lm -lz
 
 all: $(NAME)
 
