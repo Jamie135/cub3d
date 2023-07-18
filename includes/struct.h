@@ -6,12 +6,18 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 20:48:51 by pbureera          #+#    #+#             */
-/*   Updated: 2023/07/18 13:03:45 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/07/18 14:17:14 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 # define STRUCT_H
+
+typedef struct s_coord
+{
+	double	x;
+	double	y;
+}			t_coord;
 
 typedef struct s_img
 {
@@ -46,6 +52,16 @@ typedef struct s_frame
 	void			*img;
 }		t_frame;
 
+typedef struct s_player
+{
+	int		move;
+	t_coord	position;
+	t_coord	up;
+	t_coord	down;
+	t_coord	right;
+	t_coord	left;
+}			t_player;
+
 typedef struct s_data
 {
 	int			len;
@@ -60,6 +76,7 @@ typedef struct s_data
 	char		*ceiling;
 	t_frame		img;
 	t_texture	texture;
+	t_player	player;
 }				t_data;
 
 #endif

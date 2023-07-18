@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 12:39:34 by pbureera          #+#    #+#             */
-/*   Updated: 2023/07/18 13:31:08 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/07/18 14:31:31 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,4 +76,5 @@ void	init_graphic(t_data *data)
 	if (!data->mlx)
 		exit_file(data, "Mlx init failed");
 	init_texture(data, data->mlx, &data->texture);
+	init_player(data);
 }

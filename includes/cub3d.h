@@ -29,8 +29,9 @@
 # include "get_next_line.h"
 # include "struct.h"
 
-# define HEIGHT 50
-# define WIDTH 50
+# define HEIGHT 100
+# define WIDTH 100
+# define GRID 10
 
 /* map.c */
 void	init_map(t_data *data, char *str);
@@ -89,6 +90,23 @@ void	init_graphic(t_data *data);
 void	init_texture(t_data *data, void *mlx, t_texture *text);
 int		init_texture_valid(t_img *text, void *mlx, char *path);
 int		color_value(char *str);
+
+/* init_player.c */
+void	init_player(t_data *data);
+int		is_present(char c, char *str);
+void	player_position(t_data *data, int i, int j);
+void	player_direction(t_player *player, char c);
+
+/* rotation.c */
+void	init_rotation(t_player *p, double angle, int r);
+void	rotatepoint(double angle, double *x, double *y, t_coord origin);
+void	rrotatepoint(double angle, double *x, double *y, t_coord origin);
+
+/* movements.c */
+
+/* movements_utils.c */
+double	deg_to_rad(double deg);
+double	rad_to_deg(double rad);
 
 /* exit.c */
 void	exit_file(t_data *data, char *str);
