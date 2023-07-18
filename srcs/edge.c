@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 16:58:46 by pbureera          #+#    #+#             */
-/*   Updated: 2023/07/18 12:28:42 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/07/18 12:50:22 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,3 +119,10 @@ void	check_edge(t_data *data)
 	if (check_zero(data->map) || locate_player(data->map))
 		free_message(data, "Map is not closed");
 }
+
+// int	i = 0;
+// 	while (i < HEIGHT)
+// 	{
+// 		printf("%s\n", data->map[i]);
+// 		i++;
+// 	}

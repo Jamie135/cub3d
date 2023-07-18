@@ -29,8 +29,8 @@
 # include "get_next_line.h"
 # include "struct.h"
 
-# define HEIGHT 1000
-# define WIDTH 1000
+# define HEIGHT 50
+# define WIDTH 50
 
 /* map.c */
 void	init_map(t_data *data, char *str);
