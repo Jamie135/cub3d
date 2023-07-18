@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 21:02:28 by pbureera          #+#    #+#             */
-/*   Updated: 2023/07/18 12:51:17 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/07/18 13:15:53 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,6 @@ void	init_map(t_data *data, char *str)
 	check_edge(data);
 	create_map(data);
 }
-
 // int	i = 0;
 // 	while (i < HEIGHT)
 // 	{

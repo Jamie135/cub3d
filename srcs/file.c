@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 21:10:00 by pbureera          #+#    #+#             */
-/*   Updated: 2023/07/12 15:07:53 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/07/18 13:17:32 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 //parse the identifiers and colors data to struct t_data until i = 6
 //from i = 6, we start to parse each line of the map
+//if (flag == i && line[0] != '\0') condition means that the parsing failed 
+//at line i, in .cub file
 int	check_data(t_data *data, char *line)
 {
 	static int	i = 0;
@@ -38,7 +40,7 @@ int	check_data(t_data *data, char *line)
 		i += parse_color(&data->floor, line, 'F');
 	if (!data->ceiling)
 		i += parse_color(&data->ceiling, line, 'C');
-	if (flag == i && line[0] != '\0') //this condition means that the parsing failed at line i, in .cub file
+	if (flag == i && line[0] != '\0')
 		return (-1);
 	return (0);
 }

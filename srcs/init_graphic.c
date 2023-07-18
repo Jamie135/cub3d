@@ -6,15 +6,17 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 12:39:34 by pbureera          #+#    #+#             */
-/*   Updated: 2023/07/12 13:01:11 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/07/18 13:31:08 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
 //this function takes a string of rgb color (e.g. 200,200,50)
-//to split the value to int r, int g and int b
+//and split the value to int r, int g and int b
 //then it returns an int representing color in rgb format
+//return (r << 16 | g << 8 | b) combines the red, green, and blue values 
+//into a single integer value
 int	color_value(char *str)
 {
 	char	**value;
@@ -29,7 +31,12 @@ int	color_value(char *str)
 	free_tabs(value);
 	return (r << 16 | g << 8 | b);
 }
+//printf("r: %i\n", r);
 
+//load an XPM image file path and store it in struct img
+//also store the width and height of the loaded image in struct texture
+//then retrieves other fields of data about the loaded image and store
+//the address data in addr from struct texture
 int	init_texture_valid(t_img *text, void *mlx, char *path)
 {
 	text->img = mlx_xpm_file_to_image(mlx, path,
@@ -41,6 +48,8 @@ int	init_texture_valid(t_img *text, void *mlx, char *path)
 	return (0);
 }
 
+//load and store XPM image data in struct img and struct texture
+//assign an int representing the rgb value to text->ceiling and text->floor 
 void	init_texture(t_data *data, void *mlx, t_texture *text)
 {
 	if (init_texture_valid(&text->nordw, mlx, data->nord))
@@ -51,9 +60,10 @@ void	init_texture(t_data *data, void *mlx, t_texture *text)
 		exit_file(data, "WE text failed");
 	if (init_texture_valid(&text->eastw, mlx, data->east))
 		exit_file(data, "EA text failed");
-	text->cieling = color_value(data->ceiling);
+	text->ceiling = color_value(data->ceiling);
 	text->floor = color_value(data->floor);
 }
+//printf("ceiling: %i\n", text->ceiling);
 
 void	init_graphic(t_data *data)
 {

@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 20:48:51 by pbureera          #+#    #+#             */
-/*   Updated: 2023/07/12 12:49:17 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/07/18 13:03:45 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct s_texture
 	t_img	southw;
 	t_img	westw;
 	t_img	eastw;
-	int		cieling;
+	int		ceiling;
 	int		floor;
 }				t_texture;
 
