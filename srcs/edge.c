@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 16:58:46 by pbureera          #+#    #+#             */
-/*   Updated: 2023/07/18 11:32:33 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/07/18 12:28:42 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,6 @@ int	check_zero(char **map)
 
 //this function copies the elements from data->map to new map
 //except when the elements is ' ', new[i + 1][j + 1] = tmp
-//new map is offset by 1 in both dimensions compared to data->map
-//with the intention of inserting tmp into the empty spaces denoted by ' ' 
-//in data->map.
 void	flood_insert(t_data *data, char **new, char tmp)
 {
 	int	i;

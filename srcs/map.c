@@ -6,12 +6,14 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 21:02:28 by pbureera          #+#    #+#             */
-/*   Updated: 2023/07/10 21:02:28 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/07/18 12:33:09 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
+//this function copies the elements from data->map to new map
+//except when the elements is ' ', new[i + 1][j + 1] = '0'
 void	insert_map(t_data *data, char **new)
 {
 	int	i;
@@ -33,6 +35,7 @@ void	insert_map(t_data *data, char **new)
 	}
 }
 
+//assign char player to each element of the new map
 void	assign_map(t_data *data, char **new, char player)
 {
 	int	i;
@@ -53,6 +56,8 @@ void	assign_map(t_data *data, char **new, char player)
 	new[i] = NULL;
 }
 
+//allocate a 2D array representing a map and 
+//initializes it with null-terminated strings
 char	**alloc_map(t_data *data)
 {
 	int		i;
@@ -74,6 +79,7 @@ char	**alloc_map(t_data *data)
 	return (new);
 }
 
+//allocate a new map and initialize the the map with '0'
 void	create_map(t_data *data)
 {
 	char	**new;
@@ -87,6 +93,9 @@ void	create_map(t_data *data)
 	data->map = new;
 }
 
+//initialize various fields in struct data 
+//check validity of a given file, its element, the map, etc
+//then creates a map after everything is validated
 void	init_map(t_data *data, char *str)
 {
 	data->map = NULL;
