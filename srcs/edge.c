@@ -6,13 +6,14 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 16:58:46 by pbureera          #+#    #+#             */
-/*   Updated: 2023/07/11 16:58:46 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/07/18 11:32:33 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
 //iterate over the map arrayand checks if '0' is surrounded by at least one ' '
+int	check_zero(char **map)
 {
 	int	i;
 	int	j;
