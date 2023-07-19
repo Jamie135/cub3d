@@ -112,6 +112,7 @@ double	rad_to_deg(double rad);
 void	render(t_data *data);
 
 /* hooks/hooks_close.c */
+int		handle_no_event(void);
 int		handle_cross(t_data *data);
 int		handle_input(int keysym, t_data *data);
 
