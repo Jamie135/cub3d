@@ -99,8 +99,8 @@ void	player_direction(t_player *player, char c);
 
 /* rotation.c */
 void	init_rotation(t_player *p, double angle, int r);
-void	rotatepoint(double angle, double *x, double *y, t_coord origin);
-void	rrotatepoint(double angle, double *x, double *y, t_coord origin);
+void	rotate_clockwise(double angle, double *x, double *y, t_coord origin);
+void	rotate_counter(double angle, double *x, double *y, t_coord origin);
 
 /* movements.c */
 
