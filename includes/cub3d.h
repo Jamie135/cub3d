@@ -29,8 +29,8 @@
 # include "get_next_line.h"
 # include "struct.h"
 
-# define HEIGHT 640
-# define WIDTH 400
+# define HEIGHT 480
+# define WIDTH 640
 # define GRID 10
 
 /* map.c */
