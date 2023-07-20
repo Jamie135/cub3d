@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+         #
+#    By: tadiyamu <tadiyamu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/11 00:05:10 by pbureera          #+#    #+#              #
-#    Updated: 2023/07/18 15:12:24 by pbureera         ###   ########.fr        #
+#    Updated: 2023/07/19 14:52:58 by tadiyamu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,11 +16,12 @@ SRC =	srcs/cub3d.c srcs/file.c srcs/free.c srcs/map.c srcs/map_valid.c \
 		srcs/map_utils.c srcs/texture.c srcs/texture_utils.c srcs/edge.c \
 		srcs/parse_data.c srcs/player.c  \
 		srcs/init_graphic.c srcs/exit.c srcs/rotation.c srcs/movements.c \
-		srcs/movements_utils.c srcs/init_player.c
+		srcs/movements_utils.c srcs/init_player.c \
+		srcs/render.c srcs/hooks/hooks_close.c
 
 OBJ =	$(SRC:.c=.o)
 
-CC =	clang 
+CC =	clang
 FLAGS =	-Wall -Wextra -Werror -g
 LIBMLX  =  -Llibft/ -lft \
 -L./minilibx-linux -lmlx_Linux -lmlx -lXext -lX11 -lm -lz

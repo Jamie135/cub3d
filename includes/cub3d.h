@@ -29,8 +29,8 @@
 # include "get_next_line.h"
 # include "struct.h"
 
-# define HEIGHT 100
-# define WIDTH 100
+# define HEIGHT 640
+# define WIDTH 400
 # define GRID 10
 
 /* map.c */
@@ -107,6 +107,14 @@ void	rrotatepoint(double angle, double *x, double *y, t_coord origin);
 /* movements_utils.c */
 double	deg_to_rad(double deg);
 double	rad_to_deg(double rad);
+
+/* render.c */
+void	render(t_data *data);
+
+/* hooks/hooks_close.c */
+int		handle_no_event(void);
+int		handle_cross(t_data *data);
+int		handle_input(int keysym, t_data *data);
 
 /* exit.c */
 void	exit_file(t_data *data, char *str);

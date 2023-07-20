@@ -24,4 +24,5 @@ int	main(int argc, char **argv)
 	}
 	init_map(&data, argv[1]);
 	init_graphic(&data);
+	render(&data);
 }
