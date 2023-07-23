@@ -6,7 +6,7 @@
 /*   By: tadiyamu <tadiyamu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 14:17:03 by tadiyamu          #+#    #+#             */
-/*   Updated: 2023/07/23 15:56:32 by tadiyamu         ###   ########.fr       */
+/*   Updated: 2023/07/23 15:14:24 by tadiyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	draw_column(t_data *data, int col, int height, int side)
 	if (wall_start < 0)
 		wall_start = 0;
 	wall_end = HEIGHT / 2 + height / 2;
-	if (wall_end < 0)
+	if (wall_end >= HEIGHT)
 		wall_end = HEIGHT - 1;
 	for (int y = 0; y < HEIGHT; y++)
 	{
@@ -49,7 +49,6 @@ void	draw_column(t_data *data, int col, int height, int side)
 
 void	raycast(t_data *data)
 {
-	double	camera_x;
 	double	ray_dir_x;
 	double	ray_dir_y;
 	int		map_x;
@@ -57,22 +56,24 @@ void	raycast(t_data *data)
 	double	delta_dist_x;
 	double	delta_dist_y;
 	double	perp_wall_dist;
+	double	side_dist_x;
+	double	side_dist_y;
 	int		hit;
 	int		side;
 	int		height;
+	int step_x, step_y;
 
 	for (int x = 0; x < WIDTH; x++)
 	{
-		camera_x = 2 * x / (double) (WIDTH) - 1;
+		double camera_x = 2 * x / (double) (WIDTH) - 1;
 		ray_dir_x = data->player.dir.x + data->player.plane.x * camera_x;
 		ray_dir_y = data->player.dir.y + data->player.plane.y * camera_x;
 		map_x = (int) data->player.position.x;
 		map_y = (int) data->player.position.y;
-		double side_dist_x, side_dist_y;
+
 		delta_dist_x = (ray_dir_x == 0) ? 1e30 : fabs(1 / ray_dir_x);
 		delta_dist_y = (ray_dir_y == 0) ? 1e30 : fabs(1 / ray_dir_y);
-		int step_x, step_y;
-
+		hit = 0;
 		if (ray_dir_x < 0)
 		{
 			step_x = -1;
@@ -93,7 +94,7 @@ void	raycast(t_data *data)
 			step_y = 1;
 			side_dist_y = (map_y + 1.0 - data->player.position.y) * delta_dist_y;
 		}
-		hit = 0;
+		//perform DDA
 		while (hit == 0)
 		{
 			if (side_dist_x < side_dist_y)
@@ -108,7 +109,7 @@ void	raycast(t_data *data)
 				map_y += step_y;
 				side = 1;
 			}
-			if (data->map[map_x % data->len][map_y % data->height] != '0')
+			if (data->map[map_x][map_y] != '0')
 				hit = 1;
 		}
 		if (side == 0)
