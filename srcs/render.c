@@ -6,7 +6,7 @@
 /*   By: tadiyamu <tadiyamu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 14:17:03 by tadiyamu          #+#    #+#             */
-/*   Updated: 2023/07/23 15:56:32 by tadiyamu         ###   ########.fr       */
+/*   Updated: 2023/07/23 16:36:35 by tadiyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,12 +183,7 @@ int	key_hook(int keycode, t_data *data)
 
 void	render(t_data *data)
 {
-	data->player.position.x = 20;
-	data->player.position.y = 40;
-	data->player.dir.x = -1.0;
-	data->player.dir.y = 0.0;
-	data->player.plane.x = 0.0;
-	data->player.plane.y = 0.66;
+	render_player_init(data);
 	printf("Height: %d\n", data->height);
 	printf("Width: %d\n", data->len);
 	for (int w = 0; w < data->height; w++)

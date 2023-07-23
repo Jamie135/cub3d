@@ -6,7 +6,7 @@
 #    By: tadiyamu <tadiyamu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/11 00:05:10 by pbureera          #+#    #+#              #
-#    Updated: 2023/07/19 14:52:58 by tadiyamu         ###   ########.fr        #
+#    Updated: 2023/07/23 16:17:43 by tadiyamu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ SRC =	srcs/cub3d.c srcs/file.c srcs/free.c srcs/map.c srcs/map_valid.c \
 		srcs/parse_data.c srcs/player.c  \
 		srcs/init_graphic.c srcs/exit.c srcs/rotation.c srcs/movements.c \
 		srcs/movements_utils.c srcs/init_player.c \
-		srcs/render.c srcs/hooks/hooks_close.c
+		srcs/render.c srcs/hooks/hooks_close.c srcs/render_player_init.c
 
 OBJ =	$(SRC:.c=.o)
 

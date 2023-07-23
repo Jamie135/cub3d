@@ -111,6 +111,9 @@ double	rad_to_deg(double rad);
 /* render.c */
 void	render(t_data *data);
 
+/* render_player_init.c */
+void	render_player_init(t_data *data);
+
 /* hooks/hooks_close.c */
 int		handle_no_event(void);
 int		handle_cross(t_data *data);

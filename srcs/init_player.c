@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tadiyamu <tadiyamu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 02:01:11 by pbureera          #+#    #+#             */
-/*   Updated: 2023/07/18 14:50:19 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/07/23 16:39:38 by tadiyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,15 @@
 
 void	player_direction(t_player *player, char c)
 {
-	if (c == 'S')
-		init_rotation(player, 180, 0);
-	else if (c == 'E')
-		init_rotation(player, 90, 1);
-	else if (c == 'W')
-		init_rotation(player, 90, 0);
+	player->direction = c;
 }
 
 //calculates the player's x and y coordinates based on the given i and j
 //initialize the player's direction vectors (up, down, right, left)
 void	player_position(t_data *data, int i, int j)
 {
-	data->player.position.x = j * GRID + GRID / 2;
-	data->player.position.y = i * GRID + GRID / 2;
-	data->player.up.x = data->player.position.x;
-	data->player.up.y = data->player.position.y - GRID * 0.1;
-	data->player.down.x = data->player.position.x;
-	data->player.down.y = data->player.position.y + GRID * 0.1;
-	data->player.right.x = data->player.position.x + GRID * 0.1;
-	data->player.right.y = data->player.position.y;
-	data->player.left.x = data->player.position.x - GRID * 0.1;
-	data->player.left.y = data->player.position.y;
+	data->player.position.x = i;
+	data->player.position.y = j;
 }
 
 //check if char c is present in str

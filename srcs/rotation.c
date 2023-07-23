@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rotation.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tadiyamu <tadiyamu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 14:47:05 by pbureera          #+#    #+#             */
-/*   Updated: 2023/07/18 15:08:42 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/07/23 16:30:12 by tadiyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,18 +54,18 @@ void	rrotatepoint(double angle, double *x, double *y, t_coord origin)
 
 void	init_rotation(t_player *p, double angle, int r)
 {
-	if (!r)
-	{
-		rotatepoint(deg_to_rad(angle), &p->up.x, &p->up.y, p->position);
-		rotatepoint(deg_to_rad(angle), &p->down.x, &p->down.y, p->position);
-		rotatepoint(deg_to_rad(angle), &p->right.x, &p->right.y, p->position);
-		rotatepoint(deg_to_rad(angle), &p->left.x, &p->left.y, p->position);
-	}
-	else
-	{
-		rrotatepoint(deg_to_rad(angle), &p->up.x, &p->up.y, p->position);
-		rrotatepoint(deg_to_rad(angle), &p->down.x, &p->down.y, p->position);
-		rrotatepoint(deg_to_rad(angle), &p->right.x, &p->right.y, p->position);
-		rrotatepoint(deg_to_rad(angle), &p->left.x, &p->left.y, p->position);
-	}
+	// if (!r)
+	// {
+	// 	rotatepoint(deg_to_rad(angle), &p->up.x, &p->up.y, p->position);
+	// 	rotatepoint(deg_to_rad(angle), &p->down.x, &p->down.y, p->position);
+	// 	rotatepoint(deg_to_rad(angle), &p->right.x, &p->right.y, p->position);
+	// 	rotatepoint(deg_to_rad(angle), &p->left.x, &p->left.y, p->position);
+	// }
+	// else
+	// {
+	// 	rrotatepoint(deg_to_rad(angle), &p->up.x, &p->up.y, p->position);
+	// 	rrotatepoint(deg_to_rad(angle), &p->down.x, &p->down.y, p->position);
+	// 	rrotatepoint(deg_to_rad(angle), &p->right.x, &p->right.y, p->position);
+	// 	rrotatepoint(deg_to_rad(angle), &p->left.x, &p->left.y, p->position);
+	// }
 }
