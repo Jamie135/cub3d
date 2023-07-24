@@ -6,66 +6,42 @@
 /*   By: tadiyamu <tadiyamu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 14:47:05 by pbureera          #+#    #+#             */
-/*   Updated: 2023/07/23 16:30:12 by tadiyamu         ###   ########.fr       */
+/*   Updated: 2023/07/24 17:02:09 by tadiyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-double	rotatex(double angle, double x, double y, int r)
+void	rotation_left(t_data *data)
 {
-	if (r)
-		return (x * -cos(angle) + y * sin(angle));
-	return (x * cos(angle) + y * -sin(angle));
+	double	old_dir_x;
+	double	old_plane_x;
+
+	old_dir_x = data->player.dir.x;
+	data->player.dir.x = data->player.dir.x * cos(ROTATION_SPEED)
+		- data->player.dir.y * sin(ROTATION_SPEED);
+	data->player.dir.y = old_dir_x * sin(ROTATION_SPEED) + data->player.dir.y
+		* cos(ROTATION_SPEED);
+	old_plane_x = data->player.plane.x;
+	data->player.plane.x = data->player.plane.x * cos(ROTATION_SPEED)
+		- data->player.plane.y * sin(ROTATION_SPEED);
+	data->player.plane.y = old_plane_x * sin(ROTATION_SPEED)
+		+ data->player.plane.y * cos(ROTATION_SPEED);
 }
 
-double	rotatey(double angle, double x, double y, int r)
+void	rotation_right(t_data *data)
 {
-	if (r)
-		return (x * -sin(angle) + y * -cos(angle));
-	return ((x * sin(angle) + y * cos(angle)));
-}
+	double	old_dir_x;
+	double	old_plane_x;
 
-void	rotatepoint(double angle, double *x, double *y, t_coord origin)
-{
-	double	opos_x;
-	double	opos_y;
-
-	opos_x = *x - origin.x;
-	opos_y = origin.y - *y;
-	*x = rotatex(angle, opos_x, opos_y, 0);
-	*x += origin.x;
-	*y = rotatey(angle, opos_x, opos_y, 0);
-	*y = origin.y - *y;
-}
-
-void	rrotatepoint(double angle, double *x, double *y, t_coord origin)
-{
-	double	opos_x;
-	double	opos_y;
-
-	opos_x = origin.x - *x;
-	opos_y = origin.y - *y;
-	*x = rotatex(angle, opos_x, opos_y, 1);
-	*x += origin.x;
-	*y = rotatey(angle, opos_x, opos_y, 1);
-	*y += origin.y;
-}
-
-void	init_rotation(t_player *p, double angle, int r)
-{
-	// if (!r)
-	// {
-	// 	rotatepoint(deg_to_rad(angle), &p->up.x, &p->up.y, p->position);
-	// 	rotatepoint(deg_to_rad(angle), &p->down.x, &p->down.y, p->position);
-	// 	rotatepoint(deg_to_rad(angle), &p->right.x, &p->right.y, p->position);
-	// 	rotatepoint(deg_to_rad(angle), &p->left.x, &p->left.y, p->position);
-	// }
-	// else
-	// {
-	// 	rrotatepoint(deg_to_rad(angle), &p->up.x, &p->up.y, p->position);
-	// 	rrotatepoint(deg_to_rad(angle), &p->down.x, &p->down.y, p->position);
-	// 	rrotatepoint(deg_to_rad(angle), &p->right.x, &p->right.y, p->position);
-	// 	rrotatepoint(deg_to_rad(angle), &p->left.x, &p->left.y, p->position);
-	// }
+	old_dir_x = data->player.dir.x;
+	data->player.dir.x = data->player.dir.x * cos(-ROTATION_SPEED)
+		- data->player.dir.y * sin(-ROTATION_SPEED);
+	data->player.dir.y = old_dir_x * sin(-ROTATION_SPEED) + data->player.dir.y
+		* cos(-ROTATION_SPEED);
+	old_plane_x = data->player.plane.x;
+	data->player.plane.x = data->player.plane.x * cos(-ROTATION_SPEED)
+		- data->player.plane.y * sin(-ROTATION_SPEED);
+	data->player.plane.y = old_plane_x * sin(-ROTATION_SPEED)
+		+ data->player.plane.y * cos(-ROTATION_SPEED);
 }

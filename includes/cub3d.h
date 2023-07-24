@@ -32,6 +32,8 @@
 # define HEIGHT 480
 # define WIDTH 640
 # define GRID 10
+# define MOVEMENT_SPEED 0.1
+# define ROTATION_SPEED 0.05
 
 /* map.c */
 void	init_map(t_data *data, char *str);
@@ -98,11 +100,14 @@ void	player_position(t_data *data, int i, int j);
 void	player_direction(t_player *player, char c);
 
 /* rotation.c */
-void	init_rotation(t_player *p, double angle, int r);
-void	rotatepoint(double angle, double *x, double *y, t_coord origin);
-void	rrotatepoint(double angle, double *x, double *y, t_coord origin);
+void	rotation_left(t_data *data);
+void	rotation_right(t_data *data);
 
 /* movements.c */
+void	movements_forward(t_data *data);
+void	movements_backward(t_data *data);
+void	movements_left(t_data *data);
+void	movements_right(t_data *data);
 
 /* movements_utils.c */
 double	deg_to_rad(double deg);
