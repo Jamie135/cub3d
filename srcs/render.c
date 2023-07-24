@@ -6,7 +6,7 @@
 /*   By: tadiyamu <tadiyamu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 14:17:03 by tadiyamu          #+#    #+#             */
-/*   Updated: 2023/07/24 17:30:56 by tadiyamu         ###   ########.fr       */
+/*   Updated: 2023/07/24 20:18:17 by tadiyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,24 @@ void	draw_column(t_data *data, int col, int height, char direction)
 	}
 }
 
+char	raycast_hit_direction(int *hit, int step_x, int step_y, int side)
+{
+	*hit = 1;
+	if (side == 0)
+	{
+		if (step_x == 1)
+			return ('E');
+		else
+			return ('W');
+	}
+	else
+	{
+		if (step_y == 1)
+			return ('S');
+		else
+			return ('N');
+	}
+}
 
 void	raycast(t_data *data)
 {
@@ -67,15 +85,14 @@ void	raycast(t_data *data)
 	int		hit;
 	int		side;
 	char	direction;
-	int		height;
 
 	for (int x = 0; x < WIDTH; x++)
 	{
-		camera_x = 2 * x / (double)(WIDTH)-1;
+		camera_x = 2 * x / (double)(WIDTH) - 1;
 		ray_dir_x = data->player.dir.x + data->player.plane.x * camera_x;
 		ray_dir_y = data->player.dir.y + data->player.plane.y * camera_x;
-		map_x = (int)data->player.position.x;
-		map_y = (int)data->player.position.y;
+		map_x = (int) data->player.position.x;
+		map_y = (int) data->player.position.y;
 		double side_dist_x, side_dist_y;
 		delta_dist_x = (ray_dir_x == 0) ? 1e30 : fabs(1 / ray_dir_x);
 		delta_dist_y = (ray_dir_y == 0) ? 1e30 : fabs(1 / ray_dir_y);
@@ -117,31 +134,14 @@ void	raycast(t_data *data)
 				map_y += step_y;
 				side = 1;
 			}
-			if (data->map[map_x % data->len][map_y % data->height] == '1')
-			{
-				if (side == 0)
-				{
-					if (step_x == 1)
-						direction = 'E'; // Wall facing east
-					else
-						direction = 'W'; // Wall facing west
-				}
-				else
-				{
-					if (step_y == 1)
-						direction = 'S'; // Wall facing south
-					else
-						direction = 'N'; // Wall facing north
-				}
-				hit = 1;
-			}
+			if (data->map[map_x % data->height][map_y % data->len] == '1')
+				direction = raycast_hit_direction(&hit, step_x, step_y, side);
 		}
 		if (side == 0)
 			perp_wall_dist = side_dist_x - delta_dist_x;
 		else
 			perp_wall_dist = side_dist_y - delta_dist_y;
-		height = (int) (HEIGHT / perp_wall_dist);
-		draw_column(data, x, height, direction);
+		draw_column(data, x, (int) (HEIGHT / perp_wall_dist), direction);
 	}
 }
 
@@ -170,6 +170,16 @@ int	key_hook(int keycode, t_data *data)
 
 void	render(t_data *data)
 {
+	printf("Height: %d\n", data->height);
+	printf("Width: %d\n", data->len);
+	for (int w = 0; w < data->height; w++)
+	{
+		for (int h = 0; h < data->len; h++)
+		{
+			printf("%c", data->map[w][h]);
+		}
+		printf("\n");
+	}
 	render_player_init(data);
 	data->img.window = mlx_new_window(data->mlx, WIDTH, HEIGHT, "cub3D");
 	data->img.img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
