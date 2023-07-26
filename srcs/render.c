@@ -6,7 +6,7 @@
 /*   By: tadiyamu <tadiyamu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 14:17:03 by tadiyamu          #+#    #+#             */
-/*   Updated: 2023/07/26 15:48:41 by tadiyamu         ###   ########.fr       */
+/*   Updated: 2023/07/26 19:18:26 by tadiyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,11 +147,13 @@ void	raycast(t_data *data)
 
 void	render_update_screen(t_data *data)
 {
-	mlx_destroy_image(data->mlx, data->img.img);
+	if (data->img.img)
+		mlx_destroy_image(data->mlx, data->img.img);
 	data->img.img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
 	data->img.addr = mlx_get_data_addr(data->img.img, &data->img.bpp,
 			&data->img.len, &data->img.endian);
 	raycast(data);
+	render_map(data);
 	mlx_put_image_to_window(data->mlx, data->img.window, data->img.img, 0, 0);
 }
 
@@ -177,13 +179,7 @@ void	render(t_data *data)
 {
 	render_player_init(data);
 	data->img.window = mlx_new_window(data->mlx, WIDTH, HEIGHT, "cub3D");
-	data->img.img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
-	data->img.addr = mlx_get_data_addr(data->img.img,
-										&data->img.bpp,
-										&data->img.len,
-										&data->img.endian);
-	raycast(data);
-	mlx_put_image_to_window(data->mlx, data->img.window, data->img.img, 0, 0);
+	render_update_screen(data);
 	mlx_loop_hook(data->mlx, &handle_no_event, &data->img);
 	mlx_hook(data->img.window, 2, 1L << 0, &handle_input, data);
 	mlx_hook(data->img.window, 17, 1L << 17, &handle_cross, data);

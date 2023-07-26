@@ -117,9 +117,13 @@ double	rad_to_deg(double rad);
 /* render.c */
 void	render(t_data *data);
 void	render_update_screen(t_data *data);
+void	ft_mlx_pixel_put(t_data *data, int x, int y, int color);
 
 /* render_player_init.c */
 void	render_player_init(t_data *data);
+
+/* render_map.c */
+void	render_map(t_data *data);
 
 /* hooks/hooks_close.c */
 int		handle_no_event(void);
