@@ -22,7 +22,7 @@ typedef struct s_coord
 typedef struct s_ray
 {
 	int			stripwall;
-	int			walldirection;
+	char		walldirection;
 	double		length;
 	t_coord		coord;
 

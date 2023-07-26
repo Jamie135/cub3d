@@ -116,6 +116,10 @@ int		handle_no_event(void);
 int		handle_cross(t_data *data);
 int		handle_input(int keysym, t_data *data);
 
+/* texture_display.c */
+void	scale_wall(t_data *data, t_ray *ray);
+t_img	*direction_wall(t_texture *t, t_ray *ray);
+
 /* exit.c */
 void	exit_file(t_data *data, char *str);
 void	exit_window(t_data *data);
