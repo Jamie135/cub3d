@@ -6,7 +6,7 @@
 /*   By: tadiyamu <tadiyamu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 14:17:03 by tadiyamu          #+#    #+#             */
-/*   Updated: 2023/07/24 20:18:17 by tadiyamu         ###   ########.fr       */
+/*   Updated: 2023/07/26 15:48:41 by tadiyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,11 +88,11 @@ void	raycast(t_data *data)
 
 	for (int x = 0; x < WIDTH; x++)
 	{
-		camera_x = 2 * x / (double)(WIDTH) - 1;
+		camera_x = 2 * x / (double)(WIDTH)-1;
 		ray_dir_x = data->player.dir.x + data->player.plane.x * camera_x;
 		ray_dir_y = data->player.dir.y + data->player.plane.y * camera_x;
-		map_x = (int) data->player.position.x;
-		map_y = (int) data->player.position.y;
+		map_x = (int)data->player.position.x;
+		map_y = (int)data->player.position.y;
 		double side_dist_x, side_dist_y;
 		delta_dist_x = (ray_dir_x == 0) ? 1e30 : fabs(1 / ray_dir_x);
 		delta_dist_y = (ray_dir_y == 0) ? 1e30 : fabs(1 / ray_dir_y);
@@ -141,8 +141,18 @@ void	raycast(t_data *data)
 			perp_wall_dist = side_dist_x - delta_dist_x;
 		else
 			perp_wall_dist = side_dist_y - delta_dist_y;
-		draw_column(data, x, (int) (HEIGHT / perp_wall_dist), direction);
+		draw_column(data, x, (int)(HEIGHT / perp_wall_dist), direction);
 	}
+}
+
+void	render_update_screen(t_data *data)
+{
+	mlx_destroy_image(data->mlx, data->img.img);
+	data->img.img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
+	data->img.addr = mlx_get_data_addr(data->img.img, &data->img.bpp,
+			&data->img.len, &data->img.endian);
+	raycast(data);
+	mlx_put_image_to_window(data->mlx, data->img.window, data->img.img, 0, 0);
 }
 
 int	key_hook(int keycode, t_data *data)
@@ -159,27 +169,12 @@ int	key_hook(int keycode, t_data *data)
 		rotation_left(data);
 	else if (keycode == 65363)
 		rotation_right(data);
-	mlx_destroy_image(data->mlx, data->img.img);
-	data->img.img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
-	data->img.addr = mlx_get_data_addr(data->img.img, &data->img.bpp,
-										&data->img.len, &data->img.endian);
-	raycast(data);
-	mlx_put_image_to_window(data->mlx, data->img.window, data->img.img, 0, 0);
+	render_update_screen(data);
 	return (0);
 }
 
 void	render(t_data *data)
 {
-	printf("Height: %d\n", data->height);
-	printf("Width: %d\n", data->len);
-	for (int w = 0; w < data->height; w++)
-	{
-		for (int h = 0; h < data->len; h++)
-		{
-			printf("%c", data->map[w][h]);
-		}
-		printf("\n");
-	}
 	render_player_init(data);
 	data->img.window = mlx_new_window(data->mlx, WIDTH, HEIGHT, "cub3D");
 	data->img.img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
@@ -193,5 +188,6 @@ void	render(t_data *data)
 	mlx_hook(data->img.window, 2, 1L << 0, &handle_input, data);
 	mlx_hook(data->img.window, 17, 1L << 17, &handle_cross, data);
 	mlx_key_hook(data->img.window, &key_hook, data);
+	mlx_hook(data->img.window, 6, 1L << 6, &rotation_mouse_move, data);
 	mlx_loop(data->mlx);
 }

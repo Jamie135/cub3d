@@ -102,6 +102,7 @@ void	player_direction(t_player *player, char c);
 /* rotation.c */
 void	rotation_left(t_data *data);
 void	rotation_right(t_data *data);
+int		rotation_mouse_move(int x, int y, t_data *data);
 
 /* movements.c */
 void	movements_forward(t_data *data);
@@ -115,6 +116,7 @@ double	rad_to_deg(double rad);
 
 /* render.c */
 void	render(t_data *data);
+void	render_update_screen(t_data *data);
 
 /* render_player_init.c */
 void	render_player_init(t_data *data);
