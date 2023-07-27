@@ -6,7 +6,7 @@
 /*   By: tadiyamu <tadiyamu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 20:48:51 by pbureera          #+#    #+#             */
-/*   Updated: 2023/07/26 20:13:32 by tadiyamu         ###   ########.fr       */
+/*   Updated: 2023/07/27 15:42:35 by tadiyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ typedef struct s_data
 	int			len;
 	int			height;
 	void		*mlx;
+	t_coord		door;
 	char		**map;
 	char		*nord;
 	char		*south;

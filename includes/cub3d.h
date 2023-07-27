@@ -109,6 +109,7 @@ void	movements_forward(t_data *data);
 void	movements_backward(t_data *data);
 void	movements_left(t_data *data);
 void	movements_right(t_data *data);
+void	action_door(t_data *data);
 
 /* movements_utils.c */
 double	deg_to_rad(double deg);

@@ -6,7 +6,7 @@
 /*   By: tadiyamu <tadiyamu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 14:17:03 by tadiyamu          #+#    #+#             */
-/*   Updated: 2023/07/26 19:18:26 by tadiyamu         ###   ########.fr       */
+/*   Updated: 2023/07/27 16:22:42 by tadiyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,10 @@ void	draw_column(t_data *data, int col, int height, char direction)
 				ft_mlx_pixel_put(data, col, y, 0x2a9d8f);
 			else if (direction == 'E')
 				ft_mlx_pixel_put(data, col, y, 0xe9c46a);
+			else if (direction == 'C')
+				ft_mlx_pixel_put(data, col, y, 0xf94144);
+			else if (direction == 'O')
+				ft_mlx_pixel_put(data, col, y, 0x02c39a);
 			else
 				ft_mlx_pixel_put(data, col, y, 0xe76f51);
 		}
@@ -134,8 +138,26 @@ void	raycast(t_data *data)
 				map_y += step_y;
 				side = 1;
 			}
-			if (data->map[map_x % data->height][map_y % data->len] == '1')
+			if (data->map[map_x % data->height][map_y % data->len] == '1'
+				|| data->map[map_x % data->height][map_y % data->len] == 'C'
+				|| data->map[map_x % data->height][map_y % data->len] == 'O')
+			{
 				direction = raycast_hit_direction(&hit, step_x, step_y, side);
+				if (data->map[map_x % data->height][map_y % data->len] == 'C')
+				{
+					if (x % 5 == 0)
+						direction = 'C';
+					else
+						hit = 0;
+				}
+				if (data->map[map_x % data->height][map_y % data->len] == 'O')
+				{
+					if (x % 5 == 0)
+						direction = 'O';
+					else
+						hit = 0;
+				}
+			}
 		}
 		if (side == 0)
 			perp_wall_dist = side_dist_x - delta_dist_x;
@@ -159,7 +181,9 @@ void	render_update_screen(t_data *data)
 
 int	key_hook(int keycode, t_data *data)
 {
-	if (keycode == 1731)
+	if (keycode == 32)
+		action_door(data);
+	else if (keycode == 1731)
 		movements_forward(data);
 	else if (keycode == 1753)
 		movements_backward(data);
@@ -178,6 +202,9 @@ int	key_hook(int keycode, t_data *data)
 void	render(t_data *data)
 {
 	render_player_init(data);
+	printf("Height: %d\n", data->height);
+	printf("Width: %d\n", data->len);
+
 	data->img.window = mlx_new_window(data->mlx, WIDTH, HEIGHT, "cub3D");
 	render_update_screen(data);
 	mlx_loop_hook(data->mlx, &handle_no_event, &data->img);
