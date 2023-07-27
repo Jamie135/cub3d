@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tadiyamu <tadiyamu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 20:48:51 by pbureera          #+#    #+#             */
-/*   Updated: 2023/07/27 15:42:35 by tadiyamu         ###   ########.fr       */
+/*   Updated: 2023/07/27 17:38:34 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,18 @@ typedef struct s_coord
 	double	y;
 }			t_coord;
 
+typedef struct s_display
+{
+	t_coord		pos_wall;
+	t_coord		pos_ray;
+	double		ray_h;
+	double		ray_l;
+}				t_display;
+
 typedef struct s_ray
 {
-	int			stripwall;
-	char		walldirection;
-	double		length;
+	int			hit;
+	char		direction;
 	t_coord		coord;
 
 }				t_ray;

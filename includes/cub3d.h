@@ -133,8 +133,9 @@ int		handle_cross(t_data *data);
 int		handle_input(int keysym, t_data *data);
 
 /* texture_display.c */
-void	scale_wall(t_data *data, t_ray *ray);
-t_img	*direction_wall(t_texture *t, t_ray *ray);
+void	display_wall(t_frame *img, t_img *wall, t_display *display, double sy);
+void	scale_wall(t_data *data, char direction, int hit, int perp_wall_dist);
+t_img	*direction_wall(t_texture *t, char direction);
 
 /* exit.c */
 void	exit_file(t_data *data, char *str);
