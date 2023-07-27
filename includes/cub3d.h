@@ -29,9 +29,11 @@
 # include "get_next_line.h"
 # include "struct.h"
 
-# define HEIGHT 640
-# define WIDTH 400
+# define HEIGHT 480
+# define WIDTH 640
 # define GRID 10
+# define MOVEMENT_SPEED 0.1
+# define ROTATION_SPEED 0.05
 
 /* map.c */
 void	init_map(t_data *data, char *str);
@@ -98,11 +100,16 @@ void	player_position(t_data *data, int i, int j);
 void	player_direction(t_player *player, char c);
 
 /* rotation.c */
-void	init_rotation(t_player *p, double angle, int r);
-void	rotate_clockwise(double angle, double *x, double *y, t_coord origin);
-void	rotate_counter(double angle, double *x, double *y, t_coord origin);
+void	rotation_left(t_data *data);
+void	rotation_right(t_data *data);
+int		rotation_mouse_move(int x, int y, t_data *data);
+
 
 /* movements.c */
+void	movements_forward(t_data *data);
+void	movements_backward(t_data *data);
+void	movements_left(t_data *data);
+void	movements_right(t_data *data);
 
 /* movements_utils.c */
 double	deg_to_rad(double deg);
@@ -110,6 +117,14 @@ double	rad_to_deg(double rad);
 
 /* render.c */
 void	render(t_data *data);
+void	render_update_screen(t_data *data);
+void	ft_mlx_pixel_put(t_data *data, int x, int y, int color);
+
+/* render_player_init.c */
+void	render_player_init(t_data *data);
+
+/* render_map.c */
+void	render_map(t_data *data);
 
 /* hooks/hooks_close.c */
 int		handle_no_event(void);

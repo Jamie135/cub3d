@@ -6,7 +6,7 @@
 /*   By: tadiyamu <tadiyamu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 20:48:51 by pbureera          #+#    #+#             */
-/*   Updated: 2023/07/19 17:03:00 by tadiyamu         ###   ########.fr       */
+/*   Updated: 2023/07/26 20:13:32 by tadiyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,13 +64,11 @@ typedef struct s_frame
 typedef struct s_player
 {
 	int		move;
+	char	direction;
+	t_coord	prev_mouse;
 	t_coord	position;
 	t_coord	dir;
 	t_coord	plane;
-	t_coord	up;
-	t_coord	down;
-	t_coord	right;
-	t_coord	left;
 }			t_player;
 
 typedef struct s_data
