@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tadiyamu <tadiyamu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 22:05:08 by pbureera          #+#    #+#             */
-/*   Updated: 2023/07/10 22:05:08 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/07/27 15:25:36 by tadiyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 int	is_forbidden(char c)
 {
 	int			i;
-	static char	str[] = " 01NSWE";
+	static char	str[] = " 01NSWECO"; //TODO change for the mandotary part
 
 	i = 0;
 	while (str[i])
