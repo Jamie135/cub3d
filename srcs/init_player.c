@@ -12,6 +12,7 @@
 
 #include "../includes/cub3d.h"
 
+//initialize the player's orientation based on the given char c
 void	player_direction(t_player *player, char c)
 {
 	player->direction = c;
@@ -39,6 +40,8 @@ int	is_present(char c, char *str)
 	return (0);
 }
 
+//go through the map with (i, j) until we found the player
+//initialize the player's position and direction based on the map data
 void	init_player(t_data *data)
 {
 	int	i;

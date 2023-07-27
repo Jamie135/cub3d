@@ -19,6 +19,15 @@ typedef struct s_coord
 	double	y;
 }			t_coord;
 
+typedef struct s_ray
+{
+	int			stripwall;
+	char		walldirection;
+	double		length;
+	t_coord		coord;
+
+}				t_ray;
+
 typedef struct s_img
 {
 	int		len_line;
@@ -77,6 +86,7 @@ typedef struct s_data
 	t_frame		img;
 	t_texture	texture;
 	t_player	player;
+	t_ray		**ray;
 }				t_data;
 
 #endif

@@ -18,7 +18,9 @@ SRC =	srcs/cub3d.c srcs/file.c srcs/free.c srcs/map.c srcs/map_valid.c \
 		srcs/init_graphic.c srcs/exit.c srcs/rotation.c srcs/movements.c \
 		srcs/movements_utils.c srcs/init_player.c \
 		srcs/render.c srcs/hooks/hooks_close.c srcs/render_player_init.c \
-		srcs/render_map.c
+		srcs/render_map.c \
+		srcs/hooks/hooks_close.c srcs/texture_display.c
+
 
 OBJ =	$(SRC:.c=.o)
 
