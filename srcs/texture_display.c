@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture_display.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tadiyamu <tadiyamu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 21:41:01 by pbureera          #+#    #+#             */
-/*   Updated: 2023/07/28 13:26:58 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/07/28 17:48:44 by tadiyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,14 @@ t_img	*direction_wall(t_texture *t, char direction)
 		return (&t->westw);
 	else if (direction == 'E')
 		return (&t->eastw);
+	else if (direction == 'C')
+		return (&t->eastw);
+	else if (direction == 'O')
+		return (&t->eastw);
 	return (NULL);
 }
 
-//calculates the position and scaling of the wall texture for a specific column 
+//calculates the position and scaling of the wall texture for a specific column
 //and then renders it on the screen
 //scale_y stores the scaling factor for the wall texture
 //t_display struct holds temporary calculations related to the display of the rays

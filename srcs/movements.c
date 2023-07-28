@@ -6,7 +6,7 @@
 /*   By: tadiyamu <tadiyamu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 14:56:50 by pbureera          #+#    #+#             */
-/*   Updated: 2023/07/27 16:32:05 by tadiyamu         ###   ########.fr       */
+/*   Updated: 2023/07/28 15:29:38 by tadiyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	movements_left(t_data *data)
 	step_y = data->player.dir.x * MOVEMENT_SPEED;
 	if (data->map[(int)(data->player.position.x + step_x)][
 		(int) data->player.position.y] != '1'
-		|| data->map[(int)(data->player.position.x + step_x)][
+		&& data->map[(int)(data->player.position.x + step_x)][
 		(int) data->player.position.y] != 'C')
 		data->player.position.x += step_x;
 	if (data->map[(int)data->player.position.x][
