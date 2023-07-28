@@ -6,7 +6,7 @@
 /*   By: tadiyamu <tadiyamu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 14:17:03 by tadiyamu          #+#    #+#             */
-/*   Updated: 2023/07/28 19:05:48 by tadiyamu         ###   ########.fr       */
+/*   Updated: 2023/07/28 20:20:39 by tadiyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,8 @@ int	get_texture_color(t_img *texture, int x, int y)
 	unsigned char	green;
 	unsigned char	blue;
 
-	offset = ((y * (texture->len_line / 4)) + x) * 4;
-	red = texture->addr[offset];
-	green = texture->addr[offset + 1];
-	blue = texture->addr[offset + 2];
-	return ((red << 24) | (green << 16) | (blue << 8));
+	offset = ((y * (texture->len_line / 4)) + x);
+	return (((int *)texture->addr)[offset]);
 }
 
 void	draw_column(t_data *data, int col, t_ray *ray)
@@ -227,9 +224,6 @@ int	key_hook(int keycode, t_data *data)
 void	render(t_data *data)
 {
 	render_player_init(data);
-	printf("Height: %d\n", data->height);
-	printf("Width: %d\n", data->len);
-
 	data->img.window = mlx_new_window(data->mlx, WIDTH, HEIGHT, "cub3D");
 	render_update_screen(data);
 	mlx_loop_hook(data->mlx, &handle_no_event, &data->img);
