@@ -6,7 +6,7 @@
 /*   By: tadiyamu <tadiyamu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 19:11:44 by tadiyamu          #+#    #+#             */
-/*   Updated: 2023/07/26 20:13:10 by tadiyamu         ###   ########.fr       */
+/*   Updated: 2023/07/27 17:32:05 by tadiyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,7 @@ void	render_map(t_data *data)
 				ft_mlx_pixel_put(data, map_x, map_y, 0xe63946);
 			else if (data->map[(int)(map_x / delta_x)][
 					(int)(map_y / delta_y)] == '1')
-				ft_mlx_pixel_put(data, map_x, map_y, 0x1d3557);
-			else
-				ft_mlx_pixel_put(data, map_x, map_y, 0xf1faee);
+				ft_mlx_pixel_put(data, map_x, map_y, 0xe5e5e5);
 			map_y++;
 		}
 		map_x++;

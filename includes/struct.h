@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tadiyamu <tadiyamu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 20:48:51 by pbureera          #+#    #+#             */
-/*   Updated: 2023/07/27 17:38:34 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/07/28 16:25:55 by tadiyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,10 @@ typedef struct s_display
 typedef struct s_ray
 {
 	int			hit;
+	int			side;
+	double		perp_wall_dist;
 	char		direction;
-	t_coord		coord;
-
+	t_coord		dir;
 }				t_ray;
 
 typedef struct s_img

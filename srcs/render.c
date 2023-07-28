@@ -6,7 +6,7 @@
 /*   By: tadiyamu <tadiyamu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 14:17:03 by tadiyamu          #+#    #+#             */
-/*   Updated: 2023/07/27 16:22:42 by tadiyamu         ###   ########.fr       */
+/*   Updated: 2023/07/28 18:40:42 by tadiyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,50 @@ void	ft_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-void	draw_column(t_data *data, int col, int height, char direction)
+int	get_texture_color(t_img *texture, int x, int y)
 {
-	int	wall_start;
-	int	wall_end;
-	int	y;
+	int				offset;
+	unsigned char	red;
+	unsigned char	green;
+	unsigned char	blue;
 
-	wall_start = HEIGHT / 2 - height / 2;
+	offset = ((y * (texture->len_line / 4)) + x) * 4;
+	red = texture->addr[offset];
+	green = texture->addr[offset + 1];
+	blue = texture->addr[offset + 2];
+	return ((red << 24) | (green << 16) | (blue << 8));
+}
+
+void	draw_column(t_data *data, int col, t_ray *ray)
+{
+	int		line_height;
+	int		wall_start;
+	int		wall_end;
+	double	wall_x;
+	int		y;
+	int		tex_x;
+	t_img	*wall;
+
+	line_height = (int)(HEIGHT / ray->perp_wall_dist);
+	wall_start = HEIGHT / 2 - line_height / 2;
 	if (wall_start < 0)
 		wall_start = 0;
-	wall_end = HEIGHT / 2 + height / 2;
+	wall_end = HEIGHT / 2 + line_height / 2;
 	if (wall_end < 0)
 		wall_end = HEIGHT - 1;
+	wall = direction_wall(&data->texture, ray->direction);
+	if (ray->side == 0)
+		wall_x = data->player.position.y + ray->perp_wall_dist * ray->dir.y;
+	else
+		wall_x = data->player.position.x + ray->perp_wall_dist * ray->dir.x;
+	wall_x -= floor(wall_x);
+	tex_x = (int)(wall_x * (double) wall->width);
+	if (ray->side == 0 && ray->dir.x > 0)
+		tex_x = wall->width - tex_x - 1;
+	if (ray->side == 1 && ray->dir.y < 0)
+		tex_x = wall->width - tex_x - 1;
+	double	step = 1.0 * wall->height / line_height;
+	double	tex_pos = (wall_start - HEIGHT / 2 + line_height / 2) * step;
 	y = -1;
 	while (++y < HEIGHT)
 	{
@@ -39,69 +71,63 @@ void	draw_column(t_data *data, int col, int height, char direction)
 			ft_mlx_pixel_put(data, col, y, data->texture.ceiling); // Sky color
 		else if (y >= wall_start && y <= wall_end)
 		{
-			if (direction == 'N')
-				ft_mlx_pixel_put(data, col, y, 0x264653);
-			else if (direction == 'S')
-				ft_mlx_pixel_put(data, col, y, 0x2a9d8f);
-			else if (direction == 'E')
-				ft_mlx_pixel_put(data, col, y, 0xe9c46a);
-			else if (direction == 'C')
+			if (ray->direction == 'C')
 				ft_mlx_pixel_put(data, col, y, 0xf94144);
-			else if (direction == 'O')
+			else if (ray->direction == 'O')
 				ft_mlx_pixel_put(data, col, y, 0x02c39a);
 			else
-				ft_mlx_pixel_put(data, col, y, 0xe76f51);
+			{
+				int	tex_y = (int) tex_pos % (wall->height);
+				tex_pos += step;
+				int color = get_texture_color(wall, tex_x, tex_y);
+				ft_mlx_pixel_put(data, col, y, color);
+			}
 		}
 		else
 			ft_mlx_pixel_put(data, col, y, data->texture.floor); // Floor color
 	}
 }
 
-char	raycast_hit_direction(int *hit, int step_x, int step_y, int side)
+void	raycast_hit_direction(t_ray *ray, int step_x, int step_y)
 {
-	*hit = 1;
-	if (side == 0)
+	ray->hit = 1;
+	if (ray->side == 0)
 	{
 		if (step_x == 1)
-			return ('E');
+			ray->direction = 'E';
 		else
-			return ('W');
+			ray->direction = 'W';
 	}
 	else
 	{
 		if (step_y == 1)
-			return ('S');
+			ray->direction = 'S';
 		else
-			return ('N');
+			ray->direction = 'N';
 	}
 }
 
 void	raycast(t_data *data)
 {
 	double	camera_x;
-	double	ray_dir_x;
-	double	ray_dir_y;
+	t_ray	ray;
 	int		map_x;
 	int		map_y;
 	double	delta_dist_x;
 	double	delta_dist_y;
-	double	perp_wall_dist;
-	int		hit;
-	int		side;
-	char	direction;
 
 	for (int x = 0; x < WIDTH; x++)
 	{
-		camera_x = 2 * x / (double)(WIDTH)-1;
-		ray_dir_x = data->player.dir.x + data->player.plane.x * camera_x;
-		ray_dir_y = data->player.dir.y + data->player.plane.y * camera_x;
-		map_x = (int)data->player.position.x;
-		map_y = (int)data->player.position.y;
+		camera_x = 2 * x / (double)(WIDTH) - 1;
+		ray.dir.x = data->player.dir.x + data->player.plane.x * camera_x;
+		ray.dir.y = data->player.dir.y + data->player.plane.y * camera_x;
+		map_x = (int) data->player.position.x;
+		map_y = (int) data->player.position.y;
 		double side_dist_x, side_dist_y;
-		delta_dist_x = (ray_dir_x == 0) ? 1e30 : fabs(1 / ray_dir_x);
-		delta_dist_y = (ray_dir_y == 0) ? 1e30 : fabs(1 / ray_dir_y);
+		delta_dist_x = (ray.dir.x == 0) ? 1e30 : fabs(1 / ray.dir.x);
+		delta_dist_y = (ray.dir.y == 0) ? 1e30 : fabs(1 / ray.dir.y);
 		int step_x, step_y;
-		if (ray_dir_x < 0)
+		if (ray.dir.x < 0)
 		{
 			step_x = -1;
 			side_dist_x = (data->player.position.x - map_x) * delta_dist_x;
@@ -112,7 +138,7 @@ void	raycast(t_data *data)
 			side_dist_x = (map_x + 1.0 - data->player.position.x)
 				* delta_dist_x;
 		}
-		if (ray_dir_y < 0)
+		if (ray.dir.y < 0)
 		{
 			step_y = -1;
 			side_dist_y = (data->player.position.y - map_y) * delta_dist_y;
@@ -123,47 +149,46 @@ void	raycast(t_data *data)
 			side_dist_y = (map_y + 1.0 - data->player.position.y)
 				* delta_dist_y;
 		}
-		hit = 0;
-		while (hit == 0)
+		ray.hit = 0;
+		while (ray.hit == 0)
 		{
 			if (side_dist_x < side_dist_y)
 			{
 				side_dist_x += delta_dist_x;
 				map_x += step_x;
-				side = 0;
+				ray.side = 0;
 			}
 			else
 			{
 				side_dist_y += delta_dist_y;
 				map_y += step_y;
-				side = 1;
+				ray.side = 1;
 			}
-			if (data->map[map_x % data->height][map_y % data->len] == '1'
-				|| data->map[map_x % data->height][map_y % data->len] == 'C'
-				|| data->map[map_x % data->height][map_y % data->len] == 'O')
+			char mapVal = data->map[map_x % data->height][map_y % data->len];
+			if (mapVal == '1' || mapVal == 'C' || mapVal == 'O')
 			{
-				direction = raycast_hit_direction(&hit, step_x, step_y, side);
+				raycast_hit_direction(&ray, step_x, step_y);
 				if (data->map[map_x % data->height][map_y % data->len] == 'C')
 				{
 					if (x % 5 == 0)
-						direction = 'C';
+						ray.direction = 'C';
 					else
-						hit = 0;
+						ray.hit = 0;
 				}
 				if (data->map[map_x % data->height][map_y % data->len] == 'O')
 				{
 					if (x % 5 == 0)
-						direction = 'O';
+						ray.direction = 'O';
 					else
-						hit = 0;
+						ray.hit = 0;
 				}
 			}
 		}
-		if (side == 0)
-			perp_wall_dist = side_dist_x - delta_dist_x;
+		if (ray.side == 0)
+			ray.perp_wall_dist = side_dist_x - delta_dist_x;
 		else
-			perp_wall_dist = side_dist_y - delta_dist_y;
-		draw_column(data, x, (int)(HEIGHT / perp_wall_dist), direction);
+			ray.perp_wall_dist = side_dist_y - delta_dist_y;
+		draw_column(data, x, &ray);
 	}
 }
 
