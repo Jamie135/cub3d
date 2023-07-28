@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 21:41:01 by pbureera          #+#    #+#             */
-/*   Updated: 2023/07/28 12:27:30 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/07/28 13:26:58 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,11 +75,13 @@ t_img	*direction_wall(t_texture *t, char direction)
 
 //calculates the position and scaling of the wall texture for a specific column 
 //and then renders it on the screen
+//scale_y stores the scaling factor for the wall texture
+//t_display struct holds temporary calculations related to the display of the rays
 void	scale_wall(t_data *data, char direction, int hit, int perp_wall_dist)
 {
 	double		scale_y;
 	t_img		*wall;
-	t_display		*display;
+	t_display	*display;
 
 	wall = direction_wall(&data->texture, direction);
 	display->pos_wall.y = 0;

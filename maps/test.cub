@@ -1,7 +1,7 @@
-NO ./xpm/grass.xpm
-SO ./xpm/rock.xpm
-WE ./xpm/player.xpm
-EA ./xpm/item.xpm
+NO ./xpm/green.xpm
+SO ./xpm/blue.xpm
+WE ./xpm/red.xpm
+EA ./xpm/purple.xpm
 
 F 220,100,0
 C 78,168,222
