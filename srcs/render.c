@@ -6,7 +6,7 @@
 /*   By: tadiyamu <tadiyamu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 14:17:03 by tadiyamu          #+#    #+#             */
-/*   Updated: 2023/07/28 20:20:39 by tadiyamu         ###   ########.fr       */
+/*   Updated: 2023/07/28 20:23:10 by tadiyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,9 @@ void	ft_mlx_pixel_put(t_data *data, int x, int y, int color)
 int	get_texture_color(t_img *texture, int x, int y)
 {
 	int				offset;
-	unsigned char	red;
-	unsigned char	green;
-	unsigned char	blue;
 
 	offset = ((y * (texture->len_line / 4)) + x);
-	return (((int *)texture->addr)[offset]);
+	return (((int *) texture->addr)[offset]);
 }
 
 void	draw_column(t_data *data, int col, t_ray *ray)
