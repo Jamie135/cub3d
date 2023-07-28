@@ -104,7 +104,6 @@ void	rotation_left(t_data *data);
 void	rotation_right(t_data *data);
 int		rotation_mouse_move(int x, int y, t_data *data);
 
-
 /* movements.c */
 void	movements_forward(t_data *data);
 void	movements_backward(t_data *data);
@@ -133,6 +132,8 @@ int		handle_cross(t_data *data);
 int		handle_input(int keysym, t_data *data);
 
 /* texture_display.c */
+void	put_pixel(t_frame *img, int x, int y, int color);
+int		color_pixel(t_img *text, t_display *disp, t_coord dim, double sy);
 void	display_wall(t_frame *img, t_img *wall, t_display *display, double sy);
 void	scale_wall(t_data *data, char direction, int hit, int perp_wall_dist);
 t_img	*direction_wall(t_texture *t, char direction);
