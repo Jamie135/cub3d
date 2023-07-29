@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 14:17:03 by tadiyamu          #+#    #+#             */
-/*   Updated: 2023/07/29 14:56:15 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/07/29 17:24:19 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,8 +191,12 @@ void	render_update_screen(t_data *data)
 	if (data->img.img)
 		mlx_destroy_image(data->mlx, data->img.img);
 	data->img.img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
+	if (!data->img.img)
+		exit_file(data, "Mlx new img failed");
 	data->img.addr = mlx_get_data_addr(data->img.img, &data->img.bpp,
 			&data->img.len, &data->img.endian);
+	if (!data->img.addr)
+		exit_file(data, "Mlx get addr img failed");
 	raycast(data);
 	render_map(data);
 	mlx_put_image_to_window(data->mlx, data->img.window, data->img.img, 0, 0);
@@ -222,6 +226,8 @@ void	render(t_data *data)
 {
 	render_player_init(data);
 	data->img.window = mlx_new_window(data->mlx, WIDTH, HEIGHT, "cub3D");
+	if (!data->img.window)
+		exit_file(data, "Mlx new window failed");
 	render_update_screen(data);
 	mlx_loop_hook(data->mlx, &handle_no_event, &data->img);
 	mlx_hook(data->img.window, 2, 1L << 0, &handle_input, data);
