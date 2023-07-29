@@ -53,6 +53,7 @@ int		height_map(char **map);
 int		len_map(char **map);
 void	check_element(t_data *data);
 int		is_forbidden(char c);
+void	check_door(t_data *data, int *i, int *j);
 
 /* file.c */
 void	check_file(t_data *data, char *file);

@@ -3,14 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tadiyamu <tadiyamu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 22:05:08 by pbureera          #+#    #+#             */
-/*   Updated: 2023/07/27 15:25:36 by tadiyamu         ###   ########.fr       */
+/*   Updated: 2023/07/29 17:00:17 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+void	check_door(t_data *data, int *i, int *j)
+{
+	if (*i == 0 || !data->map[*i + 1] || *j == 0 || !data->map[*i][*j + 1])
+		free_message(data, "Door is placed incorrectly");
+	else if (data->map[*i][*j + 1] == '1' && data->map[*i][*j - 1] == '1'\
+			&& data->map[*i + 1][*j] == '1' && data->map[*i - 1][*j] == '1')
+		free_message(data, "Door is placed incorrectly");
+	else if (data->map[*i][*j + 1] == '1' && data->map[*i][*j - 1] == '0'\
+			&& data->map[*i + 1][*j] == '1' && data->map[*i - 1][*j] == '1')
+		free_message(data, "Door is placed incorrectly");
+	else if (data->map[*i][*j + 1] == '0' && data->map[*i][*j - 1] == '1'\
+			&& data->map[*i + 1][*j] == '1' && data->map[*i - 1][*j] == '1')
+		free_message(data, "Door is placed incorrectly");
+	else if (data->map[*i][*j + 1] == '1' && data->map[*i][*j - 1] == '0'\
+			&& data->map[*i + 1][*j] == '1' && data->map[*i - 1][*j] == '1')
+		free_message(data, "Door is placed incorrectly");
+	else if (data->map[*i][*j + 1] == '1' && data->map[*i][*j - 1] == '1'\
+			&& data->map[*i + 1][*j] == '0' && data->map[*i - 1][*j] == '1')
+		free_message(data, "Door is placed incorrectly");
+	else if (data->map[*i][*j + 1] == '1' && data->map[*i][*j - 1] == '1'\
+			&& data->map[*i + 1][*j] == '1' && data->map[*i - 1][*j] == '0')
+		free_message(data, "Door is placed incorrectly");
+}
 
 //return -1 if str[i] is a forbidden character
 int	is_forbidden(char c)
@@ -26,6 +50,8 @@ int	is_forbidden(char c)
 			if (str[i] == 'N' || str[i] == 'S' || str[i] == 'W'
 				|| str[i] == 'E')
 				return (-1);
+			if (str[i] == 'C' || str[i] == 'O')
+				return (-2);
 			return (0);
 		}
 		i++;
@@ -33,7 +59,7 @@ int	is_forbidden(char c)
 	return (1);
 }
 
-//check if we have other characters than "01NSWE" and if there's only 1 player
+//check if we have other characters than "01NSWECO" and if there's only 1 player
 void	check_element(t_data *data)
 {
 	int	i;
@@ -53,6 +79,8 @@ void	check_element(t_data *data)
 				free_message(data, "Forbidden element found");
 			if (flag == -1)
 				player++;
+			if (flag == -2)
+				check_door(data, &i, &j);
 			j++;
 		}
 		i++;
