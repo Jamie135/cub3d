@@ -3,8 +3,8 @@ SO ./xpm/blue.xpm
 WE ./xpm/red.xpm
 EA ./xpm/purple.xpm
 
-F 220,100,0
-C 78,168,222
+F 128,128,128
+C 0,0,0
 
 
         1111111111111111111111111

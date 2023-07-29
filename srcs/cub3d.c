@@ -25,4 +25,7 @@ int	main(int argc, char **argv)
 	init_map(&data, argv[1]);
 	init_graphic(&data);
 	render(&data);
+	exit_game(&data);
+	free_texture(&data);
+	free_map(&data);
 }

@@ -148,5 +148,6 @@ void	free_message(t_data *data, char *str);
 void	free_texture(t_data *data);
 void	free_map(t_data *data);
 void	free_tabs(char **tab);
+void	free_rays(t_ray **rays, int l);
 
 #endif
