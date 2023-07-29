@@ -6,7 +6,7 @@
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 14:17:03 by tadiyamu          #+#    #+#             */
-/*   Updated: 2023/07/29 17:24:19 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/07/29 17:48:04 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -235,4 +235,5 @@ void	render(t_data *data)
 	mlx_key_hook(data->img.window, &key_hook, data);
 	mlx_hook(data->img.window, 6, 1L << 6, &rotation_mouse_move, data);
 	mlx_loop(data->mlx);
+	mlx_destroy_window(data->mlx, data->img.window);
 }
