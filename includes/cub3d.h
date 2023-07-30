@@ -121,8 +121,21 @@ void	render(t_data *data);
 void	render_update_screen(t_data *data);
 void	ft_mlx_pixel_put(t_data *data, int x, int y, int color);
 
+/* render_raycast.c */
+void	raycast_hit_direction(t_ray *ray, int step_x, int step_y);
+void	raycast_hit(t_data *data, t_ray *ray, int x);
+void	raycast_dda(t_data *data, t_ray *ray, int x);
+void	raycast_step(t_data *data, t_ray *ray, int x);
+void	raycast(t_data *data);
+
+/* render_raycast_utils.c */
+void	ray_delta_init(t_ray *ray);
+
 /* render_player_init.c */
 void	render_player_init(t_data *data);
+
+/* render_column.c */
+void	draw_column(t_data *data, int x, t_ray *ray);
 
 /* render_map.c */
 void	render_map(t_data *data);

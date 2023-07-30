@@ -1,35 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hooks_close.c                                      :+:      :+:    :+:   */
+/*   render_raycast_utils.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tadiyamu <tadiyamu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/30 15:33:54 by tadiyamu          #+#    #+#             */
-/*   Updated: 2023/07/30 15:34:01 by tadiyamu         ###   ########.fr       */
+/*   Created: 2023/07/30 14:29:52 by tadiyamu          #+#    #+#             */
+/*   Updated: 2023/07/30 14:37:24 by tadiyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "../includes/cub3d.h"
 
-int	handle_input(int keysym, t_data *data)
+void	ray_delta_init(t_ray *ray)
 {
-	if (keysym == 65307 && data->img.window != 0)
-	{
-		mlx_loop_end(data->mlx);
-	}
-	return (0);
-}
-
-int	handle_cross(t_data *data)
-{
-	if (data->img.window != 0)
-		return (handle_input(65307, data));
-	return (0);
-}
-
-/* This function needs to exist, but it is useless for the moment */
-int	handle_no_event(void)
-{
-	return (0);
+	if (ray->dir.x == 0)
+		ray->delta_dist_x = 1e30;
+	else
+		ray->delta_dist_x = fabs(1 / ray->dir.x);
+	if (ray->dir.y == 0)
+		ray->delta_dist_y = 1e30;
+	else
+		ray->delta_dist_y = fabs(1 / ray->dir.y);
 }

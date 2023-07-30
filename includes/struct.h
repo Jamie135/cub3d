@@ -6,7 +6,7 @@
 /*   By: tadiyamu <tadiyamu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 20:48:51 by pbureera          #+#    #+#             */
-/*   Updated: 2023/07/28 16:25:55 by tadiyamu         ###   ########.fr       */
+/*   Updated: 2023/07/30 15:02:05 by tadiyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,28 @@ typedef struct s_ray
 	double		perp_wall_dist;
 	char		direction;
 	t_coord		dir;
+	double		camera_x;
+	int			map_x;
+	int			map_y;
+	int			step_x;
+	int			step_y;
+	double		delta_dist_x;
+	double		delta_dist_y;
+	double		side_dist_x;
+	double		side_dist_y;
 }				t_ray;
+
+typedef struct s_column
+{
+	int				line_height;
+	int				wall_start;
+	int				wall_end;
+	double			wall_x;
+	int				tex_x;
+	struct s_img	*wall;
+	double			step;
+	double			tex_pos;
+}				t_column;
 
 typedef struct s_img
 {

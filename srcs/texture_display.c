@@ -6,7 +6,7 @@
 /*   By: tadiyamu <tadiyamu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 21:41:01 by pbureera          #+#    #+#             */
-/*   Updated: 2023/07/28 17:48:44 by tadiyamu         ###   ########.fr       */
+/*   Updated: 2023/07/30 15:34:15 by tadiyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	put_pixel(t_frame *img, int x, int y, int color)
 			+ (x * img->len) + y * (img->bpp / 8)) = color;
 }
 
-//determine the color of a specific pixel in the wall texture
 int	color_pixel(t_img *text, t_display *disp, t_coord dim, double sy)
 {
 	int		i;
@@ -33,9 +32,6 @@ int	color_pixel(t_img *text, t_display *disp, t_coord dim, double sy)
 	return (*(int *)(text->addr + l + h));
 }
 
-//iterate through each pixel of the display ray
-//calculate the appropriate color for each pixel in the wall texture
-//and set the corresponding pixel's color in the 3D image frame
 void	display_wall(t_frame *img, t_img *wall, t_display *display, double sy)
 {
 	int		i;
@@ -52,7 +48,7 @@ void	display_wall(t_frame *img, t_img *wall, t_display *display, double sy)
 		{
 			dim.x = j;
 			color = color_pixel(wall, display, dim, sy);
-			put_pixel(img, (int)display->pos_ray.y + i,\
+			put_pixel(img, (int) display->pos_ray.y + i, \
 						display->pos_ray.x + j, color);
 			j++;
 		}
@@ -77,10 +73,6 @@ t_img	*direction_wall(t_texture *t, char direction)
 	return (NULL);
 }
 
-//calculates the position and scaling of the wall texture for a specific column
-//and then renders it on the screen
-//scale_y stores the scaling factor for the wall texture
-//t_display struct holds temporary calculations related to the display of the rays
 void	scale_wall(t_data *data, char direction, int hit, int perp_wall_dist)
 {
 	double		scale_y;
@@ -92,9 +84,9 @@ void	scale_wall(t_data *data, char direction, int hit, int perp_wall_dist)
 	display->pos_wall.x = hit * wall->width / (double)(GRID);
 	display->ray_h = (double)(HEIGHT / perp_wall_dist);
 	scale_y = (double)(wall->height) / display->ray_h;
-	if (display->pos_ray.y < 0) //this condition resets the ray's position to 0, preventing the wall texture from being displayed above the screen's top edge
+	if (display->pos_ray.y < 0)
 		display->pos_ray.y = 0;
-	if (display->ray_h >= (double)(HEIGHT)) //this condition means the wall is taller than the screen, so the function performs additional adjustments to ensure the wall texture is displayed correctly within the visible portion of the screen
+	if (display->ray_h >= (double)(HEIGHT))
 	{
 		display->pos_wall.y = (display->ray_h - (double)HEIGHT) / 2 * scale_y;
 		display->ray_h = HEIGHT;
