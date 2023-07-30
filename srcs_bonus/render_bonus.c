@@ -6,7 +6,7 @@
 /*   By: tadiyamu <tadiyamu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 14:17:03 by tadiyamu          #+#    #+#             */
-/*   Updated: 2023/07/30 17:13:35 by tadiyamu         ###   ########.fr       */
+/*   Updated: 2023/07/30 15:16:24 by tadiyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	render_update_screen(t_data *data)
 	if (!data->img.addr)
 		exit_file(data, "Mlx get addr img failed");
 	raycast(data);
+	render_map(data);
 	mlx_put_image_to_window(data->mlx, data->img.window, data->img.img, 0, 0);
 }
 
@@ -66,6 +67,7 @@ void	render(t_data *data)
 	mlx_hook(data->img.window, 2, 1L << 0, &handle_input, data);
 	mlx_hook(data->img.window, 17, 1L << 17, &handle_cross, data);
 	mlx_key_hook(data->img.window, &key_hook, data);
+	mlx_hook(data->img.window, 6, 1L << 6, &rotation_mouse_move, data);
 	mlx_loop(data->mlx);
 	mlx_destroy_window(data->mlx, data->img.window);
 }

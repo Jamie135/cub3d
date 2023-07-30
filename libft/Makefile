@@ -32,7 +32,7 @@ OBJS_B	= ${SRCS_B:.c=.o}
 
 HEADER	= ./
 
-CC 		= gcc
+CC 		= cc
 
 CFLAGS 	= -Wall -Wextra -Werror
 

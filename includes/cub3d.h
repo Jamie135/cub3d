@@ -125,7 +125,7 @@ void	ft_mlx_pixel_put(t_data *data, int x, int y, int color);
 void	raycast_hit_direction(t_ray *ray, int step_x, int step_y);
 void	raycast_hit(t_data *data, t_ray *ray, int x);
 void	raycast_dda(t_data *data, t_ray *ray, int x);
-void	raycast_step(t_data *data, t_ray *ray, int x);
+void	raycast_step(t_data *data, t_ray *ray);
 void	raycast(t_data *data);
 
 /* render_raycast_utils.c */
@@ -149,7 +149,6 @@ int		handle_input(int keysym, t_data *data);
 void	put_pixel(t_frame *img, int x, int y, int color);
 int		color_pixel(t_img *text, t_display *disp, t_coord dim, double sy);
 void	display_wall(t_frame *img, t_img *wall, t_display *display, double sy);
-void	scale_wall(t_data *data, char direction, int hit, int perp_wall_dist);
 t_img	*direction_wall(t_texture *t, char direction);
 
 /* exit.c */

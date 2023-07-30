@@ -6,11 +6,12 @@
 #    By: tadiyamu <tadiyamu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/11 00:05:10 by pbureera          #+#    #+#              #
-#    Updated: 2023/07/30 15:31:09 by tadiyamu         ###   ########.fr        #
+#    Updated: 2023/07/30 17:26:36 by tadiyamu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME =	cub3D
+NAME_B =	cub3d_bonus
 
 SRC =	srcs/cub3d.c srcs/file.c srcs/free.c srcs/map.c srcs/map_valid.c \
 		srcs/map_utils.c srcs/texture.c srcs/texture_utils.c srcs/edge.c \
@@ -22,10 +23,21 @@ SRC =	srcs/cub3d.c srcs/file.c srcs/free.c srcs/map.c srcs/map_valid.c \
 		srcs/render_column.c \
 		srcs/hooks/hooks_close.c srcs/texture_display.c
 
+B_SRC =	srcs_bonus/cub3d_bonus.c srcs_bonus/file_bonus.c srcs_bonus/free_bonus.c srcs_bonus/map_bonus.c srcs_bonus/map_valid_bonus.c \
+		srcs_bonus/map_utils_bonus.c srcs_bonus/texture_bonus.c srcs_bonus/texture_utils_bonus.c srcs_bonus/edge_bonus.c \
+		srcs_bonus/parse_data_bonus.c srcs_bonus/player_bonus.c  \
+		srcs_bonus/init_graphic_bonus.c srcs_bonus/exit_bonus.c srcs_bonus/rotation_bonus.c srcs_bonus/movements_bonus.c \
+		srcs_bonus/movements_utils_bonus.c srcs_bonus/init_player_bonus.c \
+		srcs_bonus/render_bonus.c srcs_bonus/render_player_init_bonus.c \
+		srcs_bonus/render_map_bonus.c srcs_bonus/render_raycast_bonus.c srcs_bonus/render_raycast_utils_bonus.c \
+		srcs_bonus/render_column_bonus.c \
+		srcs_bonus/hooks/hooks_close_bonus.c srcs_bonus/texture_display_bonus.c
+
 
 OBJ =	$(SRC:.c=.o)
+B_OBJ =	$(B_SRC:.c=.o)
 
-CC =	clang
+CC =	cc
 FLAGS =	-Wall -Wextra -Werror -g
 LIBMLX  =  -Llibft/ -lft \
 -L./minilibx-linux -lmlx_Linux -lmlx -lXext -lX11 -lm -lz
@@ -35,7 +47,17 @@ all: $(NAME)
 $(NAME):	$(OBJ)
 	cd libft && make && cd ..
 	cd minilibx-linux && make && cd ..
-	@$(CC) $(FLAGS) $(HEADERS) -o $(NAME) $(OBJ) $(LIBMLX)
+	@$(CC) -o $(NAME) $(OBJ) $(LIBMLX)
+
+bonus: $(NAME_B)
+
+${NAME_B}:	$(B_OBJ)
+	cd libft && make && cd ..
+	cd minilibx-linux && make && cd ..
+	@$(CC) -o $(NAME_B) $(B_OBJ) $(LIBMLX)
+
+%.o : %.c
+	$(CC) $(FLAGS) -c $< -o $@
 
 libft/libft.a:
 	cd libft && make && cd ..
@@ -44,10 +66,12 @@ clean:
 	cd libft && make clean && cd ..
 	cd minilibx-linux && make clean && cd ..
 	rm -rf $(OBJ)
+	rm -rf $(B_OBJ)
 
 fclean:	clean
 	make fclean -C ./libft
 	rm -rf $(NAME)
+	rm -rf $(NAME_B)
 
 re:	fclean all
 
