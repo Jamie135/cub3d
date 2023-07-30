@@ -6,7 +6,7 @@
 #    By: tadiyamu <tadiyamu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/11 00:05:10 by pbureera          #+#    #+#              #
-#    Updated: 2023/07/30 17:59:09 by tadiyamu         ###   ########.fr        #
+#    Updated: 2023/07/30 18:01:20 by tadiyamu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,6 @@ B_SRC =	srcs_bonus/cub3d_bonus.c srcs_bonus/file_bonus.c srcs_bonus/free_bonus.c
 		srcs_bonus/render_map_bonus.c srcs_bonus/render_raycast_bonus.c srcs_bonus/render_raycast_utils_bonus.c \
 		srcs_bonus/render_column_bonus.c \
 		srcs_bonus/hooks/hooks_close_bonus.c srcs_bonus/texture_display_bonus.c
-
 
 OBJ =	$(SRC:.c=.o)
 B_OBJ =	$(B_SRC:.c=.o)
