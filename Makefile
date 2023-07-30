@@ -6,12 +6,12 @@
 #    By: tadiyamu <tadiyamu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/11 00:05:10 by pbureera          #+#    #+#              #
-#    Updated: 2023/07/30 17:26:36 by tadiyamu         ###   ########.fr        #
+#    Updated: 2023/07/30 17:46:37 by tadiyamu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME =	cub3D
-NAME_B =	cub3d_bonus
+NAME_B =	cub3D_bonus
 
 SRC =	srcs/cub3d.c srcs/file.c srcs/free.c srcs/map.c srcs/map_valid.c \
 		srcs/map_utils.c srcs/texture.c srcs/texture_utils.c srcs/edge.c \
