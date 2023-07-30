@@ -6,7 +6,7 @@
 #    By: tadiyamu <tadiyamu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/11 00:05:10 by pbureera          #+#    #+#              #
-#    Updated: 2023/07/30 17:46:37 by tadiyamu         ###   ########.fr        #
+#    Updated: 2023/07/30 17:59:09 by tadiyamu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,38 +38,39 @@ OBJ =	$(SRC:.c=.o)
 B_OBJ =	$(B_SRC:.c=.o)
 
 CC =	cc
+LIBFT = ./libft/libft.a
+MINILIBX = ./minilibx-linux/libmlx_Linux.a
 FLAGS =	-Wall -Wextra -Werror -g
 LIBMLX  =  -Llibft/ -lft \
 -L./minilibx-linux -lmlx_Linux -lmlx -lXext -lX11 -lm -lz
 
 all: $(NAME)
 
-$(NAME):	$(OBJ)
-	cd libft && make && cd ..
-	cd minilibx-linux && make && cd ..
+$(NAME):	$(OBJ) $(LIBFT) $(MINILIBX)
 	@$(CC) -o $(NAME) $(OBJ) $(LIBMLX)
 
 bonus: $(NAME_B)
 
-${NAME_B}:	$(B_OBJ)
-	cd libft && make && cd ..
-	cd minilibx-linux && make && cd ..
+${NAME_B}:	$(B_OBJ) $(LIBFT) $(MINILIBX)
 	@$(CC) -o $(NAME_B) $(B_OBJ) $(LIBMLX)
 
 %.o : %.c
 	$(CC) $(FLAGS) -c $< -o $@
 
-libft/libft.a:
+$(LIBFT):
 	cd libft && make && cd ..
 
+$(MINILIBX):
+	cd minilibx-linux && make && cd ..
+
 clean:
-	cd libft && make clean && cd ..
-	cd minilibx-linux && make clean && cd ..
+	make clean -C libft
+	make clean -C minilibx-linux
 	rm -rf $(OBJ)
 	rm -rf $(B_OBJ)
 
 fclean:	clean
-	make fclean -C ./libft
+	make fclean -C libft
 	rm -rf $(NAME)
 	rm -rf $(NAME_B)
 
