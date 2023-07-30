@@ -13,8 +13,8 @@
 #include "../includes/cub3d.h"
 
 //go through data->floor which contains RGB values
-//then the values are stored in the stativ int color array. 
-//then function checks if any of the color components exceeds 255
+//then the values are stored in the static int color array. 
+//then the function checks if any of the color components exceeds 255
 //and if rbg is between 0 and 2
 int	rgb_floor(t_data *data, int rgb)
 {
@@ -40,8 +40,8 @@ int	rgb_floor(t_data *data, int rgb)
 }
 
 //go through data->ceiling which contains RGB values
-//then the values are stored in the stativ int color array. 
-//then function checks if any of the color components exceeds 255
+//then the values are stored in the static int color array. 
+//then the function checks if any of the color components exceeds 255
 int	rgb_ceiling(t_data *data, int rgb)
 {
 	static int	color[3];
