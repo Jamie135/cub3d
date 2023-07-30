@@ -6,7 +6,7 @@
 /*   By: tadiyamu <tadiyamu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 02:01:11 by pbureera          #+#    #+#             */
-/*   Updated: 2023/07/26 15:17:45 by tadiyamu         ###   ########.fr       */
+/*   Updated: 2023/07/30 16:00:53 by tadiyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void	player_direction(t_player *player, char c)
 //initialize the player's direction vectors (up, down, right, left)
 void	player_position(t_data *data, int i, int j)
 {
-	data->player.position.x = i;
-	data->player.position.y = j;
+	data->player.position.x = i + 0.5;
+	data->player.position.y = j + 0.5;
 }
 
 //check if char c is present in str
