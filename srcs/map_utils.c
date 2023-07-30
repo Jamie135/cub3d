@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tadiyamu <tadiyamu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 22:05:08 by pbureera          #+#    #+#             */
-/*   Updated: 2023/07/29 17:00:17 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/07/30 15:34:38 by tadiyamu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	check_door(t_data *data, int *i, int *j)
 int	is_forbidden(char c)
 {
 	int			i;
-	static char	str[] = " 01NSWECO"; //TODO change for the mandotary part
+	static char	str[] = " 01NSWE";
 
 	i = 0;
 	while (str[i])

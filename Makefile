@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+         #
+#    By: tadiyamu <tadiyamu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/11 00:05:10 by pbureera          #+#    #+#              #
-#    Updated: 2023/07/27 17:08:18 by pbureera         ###   ########.fr        #
+#    Updated: 2023/07/30 15:31:09 by tadiyamu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,8 @@ SRC =	srcs/cub3d.c srcs/file.c srcs/free.c srcs/map.c srcs/map_valid.c \
 		srcs/init_graphic.c srcs/exit.c srcs/rotation.c srcs/movements.c \
 		srcs/movements_utils.c srcs/init_player.c \
 		srcs/render.c srcs/render_player_init.c \
-		srcs/render_map.c \
+		srcs/render_map.c srcs/render_raycast.c srcs/render_raycast_utils.c \
+		srcs/render_column.c \
 		srcs/hooks/hooks_close.c srcs/texture_display.c
 
 
