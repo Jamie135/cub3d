@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_raycast.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tadiyamu <tadiyamu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 14:29:52 by tadiyamu          #+#    #+#             */
-/*   Updated: 2023/07/30 17:20:28 by tadiyamu         ###   ########.fr       */
+/*   Updated: 2023/07/31 17:48:59 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,16 @@ void	raycast_hit_direction(t_ray *ray, int step_x, int step_y)
 	if (ray->side == 0)
 	{
 		if (step_x == 1)
-			ray->direction = 'E';
+			ray->direction = 'S';
 		else
-			ray->direction = 'W';
+			ray->direction = 'N';
 	}
 	else
 	{
 		if (step_y == 1)
-			ray->direction = 'S';
+			ray->direction = 'E';
 		else
-			ray->direction = 'N';
+			ray->direction = 'W';
 	}
 }
 
