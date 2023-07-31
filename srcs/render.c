@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tadiyamu <tadiyamu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 14:17:03 by tadiyamu          #+#    #+#             */
-/*   Updated: 2023/07/30 17:13:35 by tadiyamu         ###   ########.fr       */
+/*   Updated: 2023/07/31 13:44:29 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,13 @@ int	key_hook(int keycode, t_data *data)
 {
 	if (keycode == 32)
 		action_door(data);
-	else if (keycode == 1731)
+	else if (keycode == 1731 || keycode == 119)
 		movements_forward(data);
-	else if (keycode == 1753)
+	else if (keycode == 1753 || keycode == 115)
 		movements_backward(data);
-	else if (keycode == 1730)
+	else if (keycode == 1730 || keycode == 100)
 		movements_right(data);
-	else if (keycode == 1738)
+	else if (keycode == 1738 || keycode == 97)
 		movements_left(data);
 	else if (keycode == 65361)
 		rotation_left(data);
