@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   file.c                                             :+:      :+:    :+:   */
+/*   file_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbureera <pbureera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 21:10:00 by pbureera          #+#    #+#             */
-/*   Updated: 2023/07/18 13:17:32 by pbureera         ###   ########.fr       */
+/*   Updated: 2023/08/04 10:59:14 by pbureera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	read_file(t_data *data, char *path)
 		}
 	}
 	if (flag == -1 || !data->map)
-		free_message(data, "Wrong file format");
+		free_message(data, "Wrong map format");
 }
 
 //check if it's a .cub file
