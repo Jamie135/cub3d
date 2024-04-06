@@ -49,13 +49,11 @@ void	rotation_right(t_data *data)
 int	rotation_mouse_move(int x, int y, t_data *data)
 {
 	int		delta_x;
-	int		delta_y;
 	double	rot_speed;
 	double	old_dir_x;
 	double	old_plane_x;
 
 	delta_x = x - data->player.prev_mouse.x;
-	delta_y = y - data->player.prev_mouse.y;
 	rot_speed = 0.00005;
 	old_dir_x = data->player.dir.x;
 	data->player.dir.x = data->player.dir.x * cos(-rot_speed * delta_x)
